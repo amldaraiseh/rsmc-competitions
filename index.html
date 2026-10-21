@@ -391,6 +391,17 @@ body::before{background:#0a4347}
 .count div:nth-child(1) b{color:#fff}
 .count span{color:rgba(255,255,255,.88)}
 .spot-btn{background:#0e6368;color:#fff}.spot-btn:hover{background:#0a4347}
+
+/* contacts */
+.contacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.contact{background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:20px;display:flex;gap:16px;align-items:flex-start;border-top:5px solid var(--k)}
+.contact .av{width:56px;height:56px;border-radius:18px;background:var(--k);color:#fff;font-size:26px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cbody{min-width:0;display:grid;gap:4px}
+.cn{font-size:19px;font-weight:700;color:var(--teal-deep)}
+.cr{font-size:15px;color:var(--soft)}
+.cr2{font-size:14px;color:var(--muted);margin-top:6px}
+.ce{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+.mail{font-weight:600;color:var(--teal);word-break:break-all;font-size:15px}
 </style>
 <style>:root{color-scheme:light}body{margin:0;font-size:14px}img{max-width:100%}</style>
 </head>
@@ -408,6 +419,7 @@ body::before{background:#0a4347}
       <a href="#calendar" data-i="navCal">التقويم</a>
       <a href="#steps" data-i="navSteps">خطوات التسجيل</a>
       <a href="#faq" data-i="navFaq">أسئلة شائعة</a>
+      <a href="#contact" data-i="navContact">تواصل معنا</a>
     </nav>
     <button class="lang" id="langBtn" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z"/></svg><span id="langLbl">English</span></button>
   </div>
@@ -482,6 +494,15 @@ body::before{background:#0a4347}
     <div class="steps" id="stepsList"></div>
   </section>
 
+  <section id="contact" class="wrap sec">
+    <div class="sec-head"><div>
+      <span class="kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span data-i="kContact">تواصل معنا</span></span>
+      <h2 data-i="hContact">فريق برنامج الموهوبين</h2>
+      <p class="sub" data-i="sContact">لأي استفسار عن المسابقات أو التسجيل أو التدريب، تواصلوا معنا.</p>
+    </div></div>
+    <div class="contacts" id="contactList"></div>
+  </section>
+
   <section id="faq" class="wrap sec">
     <div class="sec-head"><div>
       <span class="kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17h.01"/></svg><span data-i="kFaq">أسئلة شائعة</span></span>
@@ -527,6 +548,7 @@ const UI={
  calPdf:['تقويم حقيبة المسابقات الرسمي (PDF)','Official Contest Bag calendar (PDF)'],
  lgReg:['آخر موعد للتسجيل','Registration closes'],lgTest:['موعد الاختبار','Test day'],lgFinal:['جولة نهائية / نتائج','Final round / results'],
  kSteps:['خطوات التسجيل','How to register'],hSteps:['من الاختيار إلى يوم الاختبار','From choosing to test day'],
+ navContact:['تواصل معنا','Contact'],kContact:['تواصل معنا','Contact us'],hContact:['فريق برنامج الموهوبين','Gifted Program team'],sContact:['لأي استفسار عن المسابقات أو التسجيل أو التدريب، تواصلوا معنا.','For any question about competitions, registration or training, contact us.'],copy:['نسخ','Copy'],copied:['تم النسخ','Copied'],viaSchool:['عبر قنوات المدرسة الرسمية','Through the school’s official channels'],
  kFaq:['أسئلة شائعة','FAQ'],hFaq:['إجابات سريعة لأولياء الأمور','Quick answers for parents'],
  slogan:['من هنا يُصنع المستقبل','The future starts here.'],
  disclaimer:['المعلومات مأخوذة من الأدلة والإعلانات الرسمية للجهات المنظمة للعام 2026 – 2027، وقد تتغير مواعيد الجولات العالمية. التسجيل والدفع يتمّان مباشرة عبر الموقع الرسمي لكل مسابقة، ولا تجمع هذه الصفحة أي بيانات شخصية.','Information is taken from the organizers’ official 2026 – 2027 guides and announcements; global round dates may change. Registration and payment happen directly on each competition’s official website. This page collects no personal data.'],
@@ -867,6 +889,14 @@ function renderCal(){
       return `<button type="button" class="ev t-${e.t}${past?' past':''}" data-id="${e.c.id}"><div class="dbox">${dtxt}</div><div><div class="n">${esc(name)}</div><div class="l">${esc(lbl)}</div></div></button>`}).join('')}</div>`}).join('');
 }
 
+
+const CONTACTS=[
+ {n:['أ. أمل درايسه','Ms. Amal Daraiseh'],r:['مشرفة برنامج الموهوبين','Gifted Program Supervisor'],e:'a.daraiseh@rsmc.edu.sa',k:'#7655a4'},
+ {n:['أ. أسماء الجويعي','Ms. Asma Aljuwayi'],r:['منسقة الموهوبين – قسم البنات','Gifted Coordinator – Girls’ Section'],e:'',k:'#1e8fb0'},
+ {n:['أ. سلمان الثقفي','Mr. Salman Althaqafi'],r:['منسق الموهوبين – قسم البنين','Gifted Coordinator – Boys’ Section'],e:'',k:'#2f8f5b'}
+];
+function renderContacts(){$('#contactList').innerHTML=CONTACTS.map((c,i)=>{const ini=T(c.n).replace(/^(أ\.|Ms\.|Mr\.)\s*/,'').trim().charAt(0);
+ return `<div class="contact" style="--k:${c.k}"><div class="av" aria-hidden="true">${esc(ini)}</div><div class="cbody"><div class="cn">${esc(T(c.n))}</div><div class="cr">${esc(T(c.r))}</div>${c.e?`<div class="ce"><a class="mail en-face" href="mailto:${c.e}" dir="ltr">${c.e}</a><button type="button" class="sbtn" data-copy="${c.e}">${T(UI.copy)}</button></div>`:`<div class="cr2">${T(UI.viaSchool)}</div>`}</div></div>`}).join('')}
 function renderSteps(){$('#stepsList').innerHTML=UI.stepsList.map((s,i)=>`<div class="step"><div class="no">${i+1}</div><h3>${esc(T(s[0]))}</h3><p>${esc(T(s[1]))}</p></div>`).join('')}
 function renderFaq(){$('#faqList').innerHTML=UI.faqList.map(f=>`<details><summary>${esc(T(f[0]))}</summary><p>${esc(T(f[1]))}</p></details>`).join('')}
 
@@ -945,6 +975,7 @@ function closeViewer(){const v=$('#viewer');if(v.hidden)return;viewToken++;v.hid
 /* events */
 document.addEventListener('click',e=>{
   const t=e.target;
+  const cp=t.closest('[data-copy]');if(cp){const v=cp.dataset.copy;const done=()=>{cp.textContent=T(UI.copied);setTimeout(()=>cp.textContent=T(UI.copy),1600)};try{navigator.clipboard.writeText(v).then(done,()=>{const a=cp.previousElementSibling;const rg=document.createRange();rg.selectNodeContents(a);const sl=getSelection();sl.removeAllRanges();sl.addRange(rg)})}catch(x){}return}
   const chip=t.closest('.chip');if(chip){fSubj=chip.dataset.s;renderFilters();renderGrid();return}
   const vb=t.closest('[data-view]');if(vb&&openId){openViewer(C.find(c=>c.id===openId),+vb.dataset.view);return}
   if(t.closest('#vClose')){closeViewer();return}
@@ -963,7 +994,7 @@ $('#q').addEventListener('input',e=>{fQ=e.target.value.trim();renderGrid()});
 $('#langBtn').addEventListener('click',()=>{lang=lang==='ar'?'en':'ar';try{localStorage.setItem('rsmc-lang',lang)}catch(e){}renderAll();if(openId)openPanel(openId,false)});
 window.addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(C.some(c=>c.id===h))openPanel(h,false)});
 
-function renderAll(){applyStatic();renderFilters();renderGrid();renderSpot();renderCal();renderSteps();renderFaq()}
+function renderAll(){applyStatic();renderFilters();renderGrid();renderSpot();renderCal();renderSteps();renderContacts();renderFaq()}
 renderAll();
 const h0=location.hash.slice(1);if(C.some(c=>c.id===h0))openPanel(h0,false);
 setInterval(()=>{renderGrid();renderCal()},60*60*1000);
