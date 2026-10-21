@@ -1,0 +1,974 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>بوابة مسابقات RSMC</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: sticky school header → blended campus hero with live deadline countdown → filterable competition cards → month calendar → steps → FAQ; each competition opens a full detail panel. Identity from the RSMC School Profile. */
+:root{
+  --teal:#0e6368; --teal-deep:#0a4347; --ink:#12302f; --muted:#4a6261; --soft:#34504f;
+  --bg:#f3faf7; --bg2:#e3f3ec; --surface:#ffffff; --surface-2:#f7fbf9; --mint:#dff3ea; --mint-2:#cfeee0; --line:#d5e3df;
+  --green:#47ba79; --green-ink:#1d7a49; --yellow:#fed873; --purple:#7655a4; --cyan:#35c4ec; --orange:#f47c57;
+  --chip-en:#e6f6fc; --chip-en-ink:#156f8c; --chip-math:#efe9f8; --chip-math-ink:#5b4290; --chip-sci:#e3f5ea; --chip-sci-ink:#1d7a49; --chip-code:#fff1e0; --chip-code-ink:#9a4a12;
+  --danger:#b4432a; --danger-bg:#fde8e1; --warn-bg:#fff4d2; --warn-ink:#7a5a00;
+  --shadow:0 14px 34px rgba(10,67,71,.10); --shadow-lg:0 24px 60px rgba(10,67,71,.18);
+  --hero-teal:#0e6368; --on-teal:#ffffff; --on-teal-soft:#d5e3df;
+  --f-ar:'IBM Plex Sans Arabic','Segoe UI',Tahoma,sans-serif;
+  --f-en:'Instrument Sans','Segoe UI',Helvetica,Arial,sans-serif;
+  --r-lg:28px; --r-md:20px; --r-sm:14px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --teal:#6fd0c8; --teal-deep:#a6e6df; --ink:#e4f2ee; --muted:#9bbcb6; --soft:#bcd6d1;
+  --bg:#0a1c1e; --bg2:#0d2527; --surface:#112b2d; --surface-2:#0f2628; --mint:#14393a; --mint-2:#1a4645; --line:#244a4c;
+  --green-ink:#7fe0a9;
+  --chip-en:#103a46; --chip-en-ink:#8fdcf4; --chip-math:#2a2343; --chip-math-ink:#cbb8f0; --chip-sci:#13392a; --chip-sci-ink:#8fe5b3; --chip-code:#3a2614; --chip-code-ink:#f6c08f;
+  --danger:#ff9b80; --danger-bg:#3a1d17; --warn-bg:#3a3214; --warn-ink:#f3d675;
+  --shadow:0 14px 34px rgba(0,0,0,.35); --shadow-lg:0 24px 60px rgba(0,0,0,.5);
+  --hero-teal:#0e6368; --on-teal:#ffffff; --on-teal-soft:#cfe6e1;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --teal:#6fd0c8; --teal-deep:#a6e6df; --ink:#e4f2ee; --muted:#9bbcb6; --soft:#bcd6d1;
+  --bg:#0a1c1e; --bg2:#0d2527; --surface:#112b2d; --surface-2:#0f2628; --mint:#14393a; --mint-2:#1a4645; --line:#244a4c;
+  --green-ink:#7fe0a9;
+  --chip-en:#103a46; --chip-en-ink:#8fdcf4; --chip-math:#2a2343; --chip-math-ink:#cbb8f0; --chip-sci:#13392a; --chip-sci-ink:#8fe5b3; --chip-code:#3a2614; --chip-code-ink:#f6c08f;
+  --danger:#ff9b80; --danger-bg:#3a1d17; --warn-bg:#3a3214; --warn-ink:#f3d675;
+  --shadow:0 14px 34px rgba(0,0,0,.35); --shadow-lg:0 24px 60px rgba(0,0,0,.5);
+  --hero-teal:#0e6368; --on-teal:#ffffff; --on-teal-soft:#cfe6e1;
+  color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ar);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body.en{font-family:var(--f-en)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--surface)}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.wrap{max-width:1180px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.num,.en-face{font-family:var(--f-en)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--green);outline-offset:2px;border-radius:8px}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:18px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
+.brand img{height:40px;width:auto;display:block}
+.brand .lw{display:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .brand .lt{display:none}:root:not([data-theme="light"]) .brand .lw{display:block}}
+:root[data-theme="dark"] .brand .lt{display:none}:root[data-theme="dark"] .brand .lw{display:block}
+.nav{display:flex;gap:4px;margin-inline-start:auto;flex-wrap:wrap}
+.nav a{text-decoration:none;padding:8px 14px;border-radius:999px;font-weight:600;font-size:15px;color:var(--soft)}
+.nav a:hover{background:var(--mint);color:var(--ink)}
+.lang{border:1.5px solid var(--teal);background:transparent;color:var(--teal);border-radius:999px;padding:7px 16px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px;flex-shrink:0}
+.lang:hover{background:var(--teal);color:var(--surface)}
+@media (max-width:820px){.nav{display:none}.brand img{height:34px}.top .wrap{justify-content:space-between}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
+.hero .wave{position:absolute;inset:auto 0 -1px 0;width:100%;height:90px;display:block}
+.hero .wave path{fill:var(--bg)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:28px;align-items:center;padding-block:44px 96px}
+.hero-art{position:relative;min-height:420px}
+.hero-art img.campus{position:absolute;inset:-30px -40px;width:calc(100% + 80px);height:calc(100% + 60px);object-fit:contain}
+.tile{position:absolute;width:76px;height:76px;border-radius:22px;background:color-mix(in srgb,var(--surface) 90%,transparent);box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;font-family:var(--f-en);font-weight:700;font-size:30px;animation:float 6s ease-in-out infinite}
+.tile:nth-child(3){animation-delay:-2s}.tile:nth-child(4){animation-delay:-4s}.tile:nth-child(5){animation-delay:-1s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.px{position:absolute;border-radius:4px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--mint-2);border-radius:999px;padding:6px 16px;font-weight:600;color:var(--green-ink);font-size:15px;box-shadow:0 6px 16px rgba(14,99,104,.08)}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px rgba(71,186,121,.22);flex-shrink:0}
+h1{margin:18px 0 10px;font-size:clamp(38px,6vw,68px);line-height:1.12;font-weight:700;color:var(--teal-deep);text-wrap:balance}
+h1 span{color:var(--teal);display:block;font-size:.6em;margin-top:6px}
+.lead{font-size:clamp(17px,2vw,20px);color:var(--soft);max-width:34em;margin:0}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:12px 22px;font-weight:700;text-decoration:none;cursor:pointer;border:0;font-size:16px;min-height:46px}
+.btn-primary{background:var(--hero-teal);color:var(--on-teal);box-shadow:0 10px 24px rgba(10,67,71,.25)}
+.btn-primary:hover{background:var(--teal-deep);color:var(--surface)}
+.btn-ghost{background:var(--surface);color:var(--teal);border:1.5px solid var(--teal)}
+.btn-ghost:hover{background:var(--mint)}
+.btn svg{width:20px;height:20px;flex-shrink:0}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.stat{background:var(--surface);border-radius:var(--r-md);padding:12px 18px;box-shadow:var(--shadow);min-width:120px}
+.stat b{display:block;font-family:var(--f-en);font-size:28px;line-height:1.1;color:var(--teal)}
+.stat span{font-size:14px;color:var(--muted)}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-block:28px 84px}.hero-art{min-height:280px;order:-1}.hero-art img.campus{inset:-10px -20px;width:calc(100% + 40px);height:calc(100% + 20px)}.tile{width:60px;height:60px;font-size:24px;border-radius:18px}}
+
+/* spotlight */
+.spot{margin-top:-56px;position:relative;z-index:5}
+.spot-card{background:linear-gradient(100deg,#0a4347,#0e6368 70%);color:#fff;border-radius:var(--r-lg);box-shadow:var(--shadow-lg);padding:22px 26px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:22px;align-items:center;overflow:hidden;position:relative}
+.spot-card::after{content:"";position:absolute;inset:auto -40px -60px auto;width:220px;height:220px;border-radius:50%;background:rgba(71,186,121,.18)}
+[dir="rtl"] .spot-card::after{inset:auto auto -60px -40px}
+.spot-logo{width:84px;height:84px;border-radius:22px;background:#fff;display:flex;align-items:center;justify-content:center;padding:10px}
+.spot-logo img{max-width:100%;max-height:100%}
+.spot-k{font-size:14px;color:#bfe8d5;font-weight:600}
+.spot-t{font-size:clamp(20px,2.4vw,26px);font-weight:700;line-height:1.3}
+.spot-d{font-size:15px;color:#d5e3df}
+.count{display:flex;gap:8px;position:relative;z-index:1}
+.count div{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:14px;min-width:66px;text-align:center;padding:8px 6px}
+.count b{display:block;font-family:var(--f-en);font-size:28px;line-height:1.1;font-variant-numeric:tabular-nums}
+.count span{font-size:12px;color:#d5e3df}
+.spot-btn{grid-column:1/-1;justify-self:start;background:#47ba79;color:#0a4347}
+@media (max-width:760px){.spot-card{grid-template-columns:auto minmax(0,1fr)}.count{grid-column:1/-1}.count div{flex:1;min-width:0}}
+
+/* section heads */
+section{scroll-margin-top:84px}
+.sec{padding-block:64px 8px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.kicker{display:inline-flex;align-items:center;gap:8px;background:var(--hero-teal);color:var(--on-teal);border-radius:999px;padding:6px 16px;font-weight:600;font-size:14px}
+.kicker svg{width:18px;height:18px}
+h2{margin:10px 0 4px;font-size:clamp(28px,3.6vw,40px);line-height:1.2;color:var(--teal-deep);text-wrap:balance}
+.sub{margin:0;color:var(--muted);max-width:44em}
+
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--surface);border-radius:var(--r-md);padding:12px;box-shadow:var(--shadow);margin-bottom:22px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1.5px solid var(--line);background:var(--surface-2);border-radius:999px;padding:8px 16px;font-weight:600;font-size:15px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:42px}
+.chip .c{font-family:var(--f-en);font-size:12px;background:var(--mint);color:var(--teal);border-radius:999px;padding:1px 8px}
+.chip[aria-pressed="true"]{background:var(--hero-teal);border-color:var(--hero-teal);color:var(--on-teal)}
+.chip[aria-pressed="true"] .c{background:rgba(255,255,255,.2);color:#fff}
+.fsel{display:flex;align-items:center;gap:8px;margin-inline-start:auto;flex-wrap:wrap}
+.fsel label{font-size:14px;color:var(--muted);font-weight:600}
+select,input[type=search]{font:inherit;border:1.5px solid var(--line);border-radius:999px;background:var(--surface-2);color:var(--ink);padding:8px 14px;min-height:42px}
+input[type=search]{min-width:0;width:200px}
+.toggle{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--soft);cursor:pointer}
+.toggle input{width:18px;height:18px;accent-color:var(--teal)}
+@media (max-width:760px){.fsel{margin-inline-start:0;width:100%}input[type=search]{flex:1}}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px}
+@media (max-width:400px){.grid{grid-template-columns:1fr}}
+.card{position:relative;overflow:hidden;background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow);display:flex;flex-direction:column;border:1px solid transparent;transition:transform .2s,box-shadow .2s,border-color .2s;cursor:pointer;text-align:start;padding:0}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--mint-2)}
+.card-top{position:relative;height:150px;overflow:hidden;background:linear-gradient(180deg,var(--mint),var(--surface))}
+.card-top .art{position:absolute;inset:-30px -60px -60px auto;width:300px;height:auto;opacity:.95}
+[dir="rtl"] .card-top .art{inset:-30px auto -60px -60px}
+.card-top .logo{position:absolute;top:18px;inset-inline-start:20px;height:62px;max-width:150px;background:#fff;border-radius:16px;padding:8px 12px;box-shadow:0 8px 20px rgba(10,67,71,.12);display:flex;align-items:center;justify-content:center}
+.card-top .logo img{max-height:46px;max-width:126px;display:block}
+.card-top .logo .txt{font-family:var(--f-en);font-weight:700;font-size:22px;color:#0e6368}
+.subj{position:absolute;bottom:14px;inset-inline-start:20px;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:700}
+.s-en{background:var(--chip-en);color:var(--chip-en-ink)}.s-math{background:var(--chip-math);color:var(--chip-math-ink)}.s-sci{background:var(--chip-sci);color:var(--chip-sci-ink)}.s-code{background:var(--chip-code);color:var(--chip-code-ink)}
+.card-body{padding:16px 20px 20px;display:flex;flex-direction:column;gap:12px;flex:1}
+.card h3{margin:0;font-size:21px;line-height:1.35;color:var(--teal-deep)}
+.card p{margin:0;color:var(--soft);font-size:15px;line-height:1.55}
+.meta{display:grid;gap:8px;margin-top:auto}
+.mrow{display:flex;align-items:center;gap:10px;font-size:14.5px}
+.mrow svg{width:18px;height:18px;color:var(--teal);flex-shrink:0}
+.mrow .k{color:var(--muted);min-width:7.5em}
+.mrow .v{font-weight:600;min-width:0}
+.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:700;white-space:nowrap}
+.b-open{background:var(--mint);color:var(--green-ink)}
+.b-soon{background:var(--warn-bg);color:var(--warn-ink)}
+.b-closed{background:var(--danger-bg);color:var(--danger)}
+.b-multi{background:var(--chip-math);color:var(--chip-math-ink)}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:12px}
+.more{font-weight:700;color:var(--teal);display:inline-flex;align-items:center;gap:6px}
+.more svg{width:18px;height:18px}
+[dir="rtl"] .flip{transform:scaleX(-1)}
+.empty{grid-column:1/-1;background:var(--surface);border-radius:var(--r-lg);padding:36px;text-align:center;color:var(--muted);box-shadow:var(--shadow)}
+
+/* calendar */
+.cal{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.month{background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:18px;display:flex;flex-direction:column;gap:10px}
+.month h3{margin:0 0 4px;font-size:19px;color:var(--teal-deep);display:flex;align-items:center;justify-content:space-between}
+.month h3 small{font-family:var(--f-en);color:var(--muted);font-weight:600;font-size:13px}
+.ev{display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px;align-items:center;padding:8px;border-radius:14px;cursor:pointer;border:0;background:transparent;text-align:start;width:100%}
+.ev:hover{background:var(--mint)}
+.ev.past{opacity:.5}
+.dbox{border-radius:12px;text-align:center;padding:4px 0;font-family:var(--f-en);line-height:1.1}
+.dbox b{display:block;font-size:20px}
+.dbox span{font-size:11px;font-weight:600}
+.t-reg .dbox{background:var(--warn-bg);color:var(--warn-ink)}
+.t-test .dbox{background:var(--hero-teal);color:#fff}
+.t-final .dbox{background:var(--chip-math);color:var(--chip-math-ink)}
+.ev .n{font-weight:700;font-size:14.5px;line-height:1.35}
+.ev .l{font-size:13px;color:var(--muted)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--soft)}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-inline-end:6px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;counter-reset:s}
+.step{background:var(--surface);border-radius:var(--r-lg);padding:22px;box-shadow:var(--shadow);position:relative}
+.step .no{width:46px;height:46px;border-radius:50%;background:var(--hero-teal);color:#fff;font-family:var(--f-en);font-weight:700;font-size:20px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.step h3{margin:0 0 6px;font-size:18px;color:var(--teal-deep)}
+.step p{margin:0;color:var(--soft);font-size:15px}
+
+/* faq */
+.faq{display:grid;gap:10px;max-width:880px}
+details{background:var(--surface);border-radius:var(--r-md);box-shadow:var(--shadow);padding:0 20px}
+summary{cursor:pointer;list-style:none;padding:16px 0;font-weight:700;font-size:17px;display:flex;justify-content:space-between;gap:12px;align-items:center;color:var(--teal-deep)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--f-en);font-size:24px;color:var(--teal);line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin:0 0 16px;color:var(--soft)}
+
+/* footer */
+.foot{margin-top:72px;background:#0a4347;color:#fff;position:relative}
+.foot .wrap{padding-block:40px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center}
+.foot img{height:48px}
+.foot p{margin:6px 0 0;color:#cfe6e1;font-size:14px;max-width:46em}
+.slogan{font-size:22px;font-weight:700;color:#7fe0a9}
+.foot .motif{height:90px;align-self:end}
+@media (max-width:700px){.foot .wrap{grid-template-columns:1fr}.foot .motif{display:none}}
+
+/* detail panel */
+.panel{position:fixed;inset:0;z-index:100;display:flex;justify-content:flex-end;background:rgba(6,30,32,.55);backdrop-filter:blur(3px)}
+[dir="rtl"] .panel{justify-content:flex-start}
+.sheet{width:min(860px,100%);height:100%;background:var(--bg);overflow-y:auto;box-shadow:var(--shadow-lg);animation:slide .28s ease-out;padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
+@keyframes slide{from{transform:translateX(30px);opacity:.4}to{transform:none;opacity:1}}
+.sh-head{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--mint),var(--bg));padding:calc(20px + env(safe-area-inset-top,0px)) 24px 24px}
+.sh-head .art{position:absolute;inset:-40px -80px auto auto;width:420px;opacity:.9;pointer-events:none}
+[dir="rtl"] .sh-head .art{inset:-40px auto auto -80px}
+.sh-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;position:relative}
+.x{width:46px;height:46px;border-radius:50%;border:0;background:var(--surface);box-shadow:var(--shadow);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.x svg{width:22px;height:22px}
+.sh-logo{height:68px;background:#fff;border-radius:18px;padding:8px 14px;display:inline-flex;align-items:center;box-shadow:var(--shadow)}
+.sh-logo img{max-height:52px;max-width:180px}
+.sh-head h2{position:relative;font-size:clamp(26px,3.4vw,36px);margin:18px 0 6px;max-width:16em}
+.sh-head .org{position:relative;color:var(--muted);font-weight:600;font-size:15px}
+.jump{position:sticky;top:0;z-index:3;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(8px);display:flex;gap:6px;overflow-x:auto;padding:10px 24px;border-bottom:1px solid var(--line);scrollbar-width:none}
+.jump button{border:0;background:var(--surface);border-radius:999px;padding:7px 14px;font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap;box-shadow:0 2px 8px rgba(10,67,71,.08)}
+.jump button:hover{background:var(--mint)}
+.sh-body{padding:20px 24px;display:grid;gap:18px}
+.box{background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:20px 22px;scroll-margin-top:70px}
+.box h3{margin:0 0 12px;font-size:19px;color:var(--teal-deep);display:flex;align-items:center;gap:10px}
+.box h3 svg{width:22px;height:22px;color:var(--teal)}
+.box p{margin:0 0 8px;color:var(--soft)}
+.facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.fact{background:var(--surface-2);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+.fact .k{font-size:13px;color:var(--muted);font-weight:600}
+.fact .v{font-weight:700;font-size:16px;line-height:1.4}
+.tbl{overflow-x:auto;border-radius:16px;border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:420px}
+th,td{padding:10px 12px;text-align:start;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--mint);color:var(--teal-deep);font-weight:700;font-size:14px}
+tr:last-child td{border-bottom:0}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+ul.list{margin:0;padding-inline-start:20px;display:grid;gap:6px;color:var(--soft)}
+.tl{display:grid;gap:8px}
+.tl .row{display:grid;grid-template-columns:140px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 12px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line)}
+.tl .row.past{opacity:.55}
+.tl .d{font-weight:700;font-variant-numeric:tabular-nums}
+@media (max-width:560px){.tl .row{grid-template-columns:1fr auto}.tl .d{grid-column:1/-1}}
+.sessions{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.sess{border-radius:16px;padding:12px 14px;border:1.5px solid var(--line);background:var(--surface-2)}
+.sess.next{border-color:var(--green);background:var(--mint)}
+.sess.past{opacity:.5}
+.sess .tdate{font-weight:700;font-size:16px}
+.sess .rdate{font-size:13.5px;color:var(--muted)}
+.docs{display:grid;gap:10px}
+.doc{display:flex;align-items:center;gap:14px;border:1.5px solid var(--line);border-radius:18px;padding:12px 14px;background:var(--surface-2)}
+.doc .ic{width:44px;height:50px;border-radius:10px;background:var(--orange);color:#fff;font-family:var(--f-en);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.doc .nm{font-weight:700;line-height:1.35}
+.doc .ds{font-size:13.5px;color:var(--muted)}
+.doc .acts{margin-inline-start:auto;display:flex;gap:8px;flex-wrap:wrap}
+.sbtn{border:1.5px solid var(--teal);background:transparent;color:var(--teal);border-radius:999px;padding:6px 14px;font-weight:700;font-size:14px;cursor:pointer;text-decoration:none;white-space:nowrap;min-height:38px;display:inline-flex;align-items:center}
+.sbtn.fill{background:var(--hero-teal);color:#fff;border-color:var(--hero-teal)}
+@media (max-width:560px){.doc{flex-wrap:wrap}.doc .acts{margin-inline-start:0;width:100%}}
+.actbar{position:fixed;bottom:0;z-index:4;width:min(860px,100%);display:flex;gap:10px;padding:14px 24px calc(14px + env(safe-area-inset-bottom,0px));background:color-mix(in srgb,var(--surface) 95%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+.panel .actbar{inset-inline-end:0}
+[dir="rtl"] .panel .actbar{inset-inline-end:auto;inset-inline-start:0}
+.actbar .btn{flex:1;justify-content:center}
+.note{background:var(--warn-bg);color:var(--warn-ink);border-radius:14px;padding:10px 14px;font-size:14px;font-weight:600}
+
+/* pdf viewer */
+.viewer{position:fixed;inset:0;z-index:120;background:rgba(6,30,32,.8);display:flex;flex-direction:column}
+.vbar{display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px));background:#0a4347;color:#fff}
+.vbar .tt{font-weight:700;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vbar a,.vbar button{color:#fff;border-color:#fff}
+.vpages{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.vpages canvas{max-width:100%;height:auto;background:#fff;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.vmsg{color:#fff;text-align:center;padding:40px 16px;max-width:520px}
+
+/* ===== colour layer (RSMC accents) ===== */
+:root{--c-en:#35c4ec;--c-en2:#1e8fb0;--c-math:#7655a4;--c-math2:#5b4290;--c-sci:#47ba79;--c-sci2:#2f8f5b;--c-code:#f47c57;--c-code2:#d4582f;--c-y:#fed873}
+[data-s="en"]{--sc:var(--c-en);--sc2:var(--c-en2);--sink:var(--chip-en-ink);--stint:var(--chip-en)}
+[data-s="math"]{--sc:var(--c-math);--sc2:var(--c-math2);--sink:var(--chip-math-ink);--stint:var(--chip-math)}
+[data-s="sci"]{--sc:var(--c-sci);--sc2:var(--c-sci2);--sink:var(--chip-sci-ink);--stint:var(--chip-sci)}
+[data-s="code"]{--sc:var(--c-code);--sc2:var(--c-code2);--sink:var(--chip-code-ink);--stint:var(--chip-code)}
+.hero{background:radial-gradient(60% 70% at 0% 0%,rgba(53,196,236,.16),transparent 60%),radial-gradient(50% 60% at 100% 30%,rgba(254,216,115,.22),transparent 60%),radial-gradient(60% 60% at 30% 100%,rgba(118,85,164,.14),transparent 60%),linear-gradient(180deg,var(--bg),var(--bg2))}
+.hero::before{content:"";position:absolute;top:0;inset-inline-end:0;width:min(34vw,380px);aspect-ratio:1;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Cpolygon%20points%3D%22400%2C0%20400%2C160%20240%2C0%22%20fill%3D%22%2335c4ec%22/%3E%3Cpolygon%20points%3D%22240%2C0%20320%2C80%20160%2C80%22%20fill%3D%22%23fed873%22/%3E%3Cpolygon%20points%3D%22400%2C160%20400%2C320%20320%2C240%22%20fill%3D%22%23f47c57%22/%3E%3Cpolygon%20points%3D%22320%2C80%20400%2C160%20320%2C240%20240%2C160%22%20fill%3D%22%237655a4%22/%3E%3Cpolygon%20points%3D%22240%2C160%20320%2C240%20160%2C240%22%20fill%3D%22%2347ba79%22/%3E%3Cpolygon%20points%3D%22400%2C320%20400%2C400%20320%2C400%22%20fill%3D%22%2347ba79%22/%3E%3Cpolygon%20points%3D%22160%2C80%20240%2C160%20160%2C160%22%20fill%3D%22%230e6368%22%20fill-opacity%3D%22.85%22/%3E%3C/svg%3E") no-repeat top right/contain;opacity:.95;pointer-events:none}
+[dir="rtl"] .hero::before{transform:scaleX(-1)}
+.hero::after{content:"";position:absolute;bottom:90px;inset-inline-start:0;width:120px;height:120px;background:linear-gradient(135deg,transparent 50%,var(--c-sci) 50%);opacity:.9;pointer-events:none}
+[dir="rtl"] .hero::after{background:linear-gradient(225deg,transparent 50%,var(--c-sci) 50%)}
+@media (max-width:860px){.hero::before{width:150px;opacity:.85}.hero::after{display:none}}
+h1{color:var(--teal-deep)}
+h1 span{background:linear-gradient(90deg,var(--c-math),var(--c-en2) 50%,var(--c-sci2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat{color:#fff;box-shadow:none}
+.stat:nth-child(1){background:var(--c-math)}.stat:nth-child(2){background:var(--c-code)}.stat:nth-child(3){background:var(--c-sci2)}
+.stat b,.stat span{color:#fff}
+.tile:nth-of-type(2){background:#efe9f8}.tile:nth-of-type(3){background:#dff4fb}.tile:nth-of-type(4){background:#fff4d2}.tile:nth-of-type(5){background:#e3f5ea}
+.spot-card{background:linear-gradient(105deg,#0a4347 0%,#0e6368 45%,#5b4290 100%)}
+.spot-card::after{background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Cpolygon%20points%3D%22400%2C0%20400%2C160%20240%2C0%22%20fill%3D%22%2335c4ec%22/%3E%3Cpolygon%20points%3D%22240%2C0%20320%2C80%20160%2C80%22%20fill%3D%22%23fed873%22/%3E%3Cpolygon%20points%3D%22400%2C160%20400%2C320%20320%2C240%22%20fill%3D%22%23f47c57%22/%3E%3Cpolygon%20points%3D%22320%2C80%20400%2C160%20320%2C240%20240%2C160%22%20fill%3D%22%237655a4%22/%3E%3Cpolygon%20points%3D%22240%2C160%20320%2C240%20160%2C240%22%20fill%3D%22%2347ba79%22/%3E%3Cpolygon%20points%3D%22400%2C320%20400%2C400%20320%2C400%22%20fill%3D%22%2347ba79%22/%3E%3Cpolygon%20points%3D%22160%2C80%20240%2C160%20160%2C160%22%20fill%3D%22%230e6368%22%20fill-opacity%3D%22.85%22/%3E%3C/svg%3E") no-repeat center/contain;border-radius:0;width:200px;height:200px;inset:auto -10px -40px auto;opacity:.9}
+[dir="rtl"] .spot-card::after{inset:auto auto -40px -10px;transform:scaleX(-1)}
+.count div{background:rgba(255,255,255,.14);backdrop-filter:blur(4px)}
+.spot-card>*{position:relative;z-index:1}
+.spot-card::after{opacity:.55;z-index:0}
+.count div:nth-child(1) b{color:#fed873}
+.kicker{background:var(--kc,var(--hero-teal))}
+#competitions .kicker{--kc:var(--c-math)}#calendar .kicker{--kc:var(--c-en2)}#steps .kicker{--kc:var(--c-code2)}#faq .kicker{--kc:var(--c-sci2)}
+.chip[data-s="en"]{--sc:var(--c-en2)}.chip[data-s="math"]{--sc:var(--c-math)}.chip[data-s="sci"]{--sc:var(--c-sci2)}.chip[data-s="code"]{--sc:var(--c-code2)}.chip[data-s="all"]{--sc:var(--hero-teal)}
+.chip{border-color:color-mix(in srgb,var(--sc) 40%,var(--line))}
+.chip::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--sc);flex-shrink:0}
+.chip[aria-pressed="true"]{background:var(--sc);border-color:var(--sc)}
+.chip[aria-pressed="true"]::before{background:#fff}
+.card-top{background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20320%20150%22%3E%3Cpolygon%20points%3D%22320%2C0%20320%2C90%20230%2C0%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%22.22%22/%3E%3Cpolygon%20points%3D%22250%2C150%20320%2C80%20320%2C150%22%20fill%3D%22%23fed873%22/%3E%3Cpolygon%20points%3D%22200%2C150%20250%2C100%20300%2C150%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%22.3%22/%3E%3Cpolygon%20points%3D%220%2C150%2060%2C150%200%2C90%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%22.16%22/%3E%3Cpolygon%20points%3D%22270%2C0%20300%2C30%20240%2C30%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%22.35%22/%3E%3C/svg%3E") no-repeat right top/cover,linear-gradient(135deg,var(--sc),var(--sc2))}
+[dir="rtl"] .card-top{background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20320%20150%22%3E%3Cpolygon%20points%3D%22320%2C0%20320%2C90%20230%2C0%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%22.22%22/%3E%3Cpolygon%20points%3D%22250%2C150%20320%2C80%20320%2C150%22%20fill%3D%22%23fed873%22/%3E%3Cpolygon%20points%3D%22200%2C150%20250%2C100%20300%2C150%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%22.3%22/%3E%3Cpolygon%20points%3D%220%2C150%2060%2C150%200%2C90%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%22.16%22/%3E%3Cpolygon%20points%3D%22270%2C0%20300%2C30%20240%2C30%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%22.35%22/%3E%3C/svg%3E") no-repeat left top/cover,linear-gradient(225deg,var(--sc),var(--sc2))}
+.card-top .art{mix-blend-mode:luminosity;opacity:.5}
+.subj{background:#fff;color:var(--sink,#0e6368)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .subj{background:rgba(0,0,0,.35);color:#fff}}
+:root[data-theme="dark"] .subj{background:rgba(0,0,0,.35);color:#fff}
+.card:hover{border-color:var(--sc)}
+.card h3{color:var(--teal-deep)}
+.card .more{color:var(--sink)}
+.mrow svg{color:var(--sc2)}
+.card{background:linear-gradient(180deg,var(--surface) 70%,color-mix(in srgb,var(--stint) 70%,var(--surface)))}
+.month:nth-child(5n+1){--mc:var(--c-en2)}.month:nth-child(5n+2){--mc:var(--c-math)}.month:nth-child(5n+3){--mc:var(--c-sci2)}.month:nth-child(5n+4){--mc:var(--c-code2)}.month:nth-child(5n+5){--mc:#b8860b}
+.month{border-top:0;overflow:hidden;padding-top:0}
+.month h3{margin:0 -18px 6px;padding:12px 18px;background:var(--mc);color:#fff}
+.month h3 small{color:rgba(255,255,255,.85)}
+.step:nth-child(1){--k:var(--c-en2)}.step:nth-child(2){--k:var(--c-math)}.step:nth-child(3){--k:var(--c-code2)}.step:nth-child(4){--k:var(--c-sci2)}.step:nth-child(5){--k:#b8860b}
+.step{background:linear-gradient(160deg,color-mix(in srgb,var(--k) 14%,var(--surface)),var(--surface) 70%)}
+.step .no{background:var(--k)}
+.step h3{color:var(--k)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .step h3{color:var(--ink)}}
+:root[data-theme="dark"] .step h3{color:var(--ink)}
+details:nth-child(4n+1){--k:var(--c-en2)}details:nth-child(4n+2){--k:var(--c-math)}details:nth-child(4n+3){--k:var(--c-code2)}details:nth-child(4n+4){--k:var(--c-sci2)}
+summary::after{color:#fff;background:var(--k);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+details[open]{box-shadow:0 0 0 2px var(--k),var(--shadow)}
+.foot{background:linear-gradient(110deg,#0a4347,#0e6368 60%,#5b4290)}
+.sheet[data-s] .sh-head{background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20320%20150%22%3E%3Cpolygon%20points%3D%22320%2C0%20320%2C90%20230%2C0%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%22.22%22/%3E%3Cpolygon%20points%3D%22250%2C150%20320%2C80%20320%2C150%22%20fill%3D%22%23fed873%22/%3E%3Cpolygon%20points%3D%22200%2C150%20250%2C100%20300%2C150%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%22.3%22/%3E%3Cpolygon%20points%3D%220%2C150%2060%2C150%200%2C90%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%22.16%22/%3E%3Cpolygon%20points%3D%22270%2C0%20300%2C30%20240%2C30%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%22.35%22/%3E%3C/svg%3E") no-repeat right top/contain,linear-gradient(135deg,var(--sc),var(--sc2))}
+[dir="rtl"] .sheet[data-s] .sh-head{background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20320%20150%22%3E%3Cpolygon%20points%3D%22320%2C0%20320%2C90%20230%2C0%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%22.22%22/%3E%3Cpolygon%20points%3D%22250%2C150%20320%2C80%20320%2C150%22%20fill%3D%22%23fed873%22/%3E%3Cpolygon%20points%3D%22200%2C150%20250%2C100%20300%2C150%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%22.3%22/%3E%3Cpolygon%20points%3D%220%2C150%2060%2C150%200%2C90%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%22.16%22/%3E%3Cpolygon%20points%3D%22270%2C0%20300%2C30%20240%2C30%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%22.35%22/%3E%3C/svg%3E") no-repeat left top/contain,linear-gradient(225deg,var(--sc),var(--sc2))}
+.sheet[data-s] .sh-head h2,.sheet[data-s] .sh-head .org{color:#fff}
+.sheet[data-s] .sh-head .art{mix-blend-mode:luminosity;opacity:.45}
+.sheet[data-s] .box h3 svg{color:var(--sc2)}
+.sheet[data-s] .jump button:hover{background:var(--stint)}
+.sheet[data-s] th{background:var(--stint);color:var(--sink)}
+.sheet[data-s] .sess.next{border-color:var(--sc);background:var(--stint)}
+.fact{border-top:3px solid var(--sc,var(--line))}
+
+/* ===== hero v3: RSMC cover style ===== */
+body::before{background:#0a4347}
+.top{background:#0a4347;border-bottom:0;backdrop-filter:none}
+.brand .lt{display:none!important}.brand .lw{display:block!important}
+.nav a{color:#cfe6e1}.nav a:hover{background:rgba(255,255,255,.1);color:#fff}
+.lang{border-color:rgba(255,255,255,.7);color:#fff}.lang:hover{background:#fff;color:#0a4347}
+.hero{background:#0e6368;color:#fff}
+.hero::before,.hero::after{content:none}
+.hero .wave{display:none}
+.mosaic{position:absolute;top:0;bottom:0;inset-inline-end:0;width:48%;height:100%;display:block}
+.hero .wrap{display:block;padding-block:72px 128px;min-height:560px}
+.hero-txt{max-width:560px;position:relative;z-index:1}
+.eyebrow{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;box-shadow:none;backdrop-filter:blur(6px)}
+.eyebrow .dot{background:#fed873;box-shadow:0 0 0 5px rgba(254,216,115,.25)}
+.hero h1{color:#fff;margin:22px 0 16px;font-size:clamp(40px,5.6vw,72px);line-height:1.08;letter-spacing:-.01em}
+.hero h1 .l1{display:block;color:#fff;font-size:1em;background:none;-webkit-text-fill-color:#fff;margin:0}
+.hero h1 .l2{display:block;font-size:.5em;margin-top:12px;background:none;-webkit-text-fill-color:#fed873;color:#fed873;font-weight:600;letter-spacing:0}
+.hero .lead{color:#d5e3df;font-size:clamp(17px,1.8vw,19px)}
+.btn-hero{background:#fff;color:#0a4347;box-shadow:0 10px 24px rgba(0,0,0,.18)}
+.btn-hero:hover{background:#fed873;color:#0a4347}
+.btn-hero-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.6)}
+.btn-hero-ghost:hover{background:rgba(255,255,255,.1)}
+.stats{gap:0;margin-top:34px;border-top:1px solid rgba(255,255,255,.18);padding-top:20px}
+.stat{background:none!important;box-shadow:none;border-radius:0;padding:0 22px;min-width:0;border-inline-start:1px solid rgba(255,255,255,.18)}
+.stat:first-child{padding-inline-start:0;border-inline-start:0}
+.stat b{font-size:34px}
+.stat:nth-child(1) b{color:#fed873!important}.stat:nth-child(2) b{color:#35c4ec!important}.stat:nth-child(3) b{color:#7fe0a9!important}
+.stat span{color:#cfe6e1!important}
+@media (max-width:860px){.mosaic{position:relative;width:100%;height:200px;inset:auto}.hero .wrap{padding-block:28px 110px;min-height:0}.stat{padding:0 14px}.stat b{font-size:28px}}
+/* spotlight as white card */
+.spot{margin-top:-72px}
+.spot-card{background:var(--surface)!important;color:var(--ink);border:1px solid var(--line)}
+.spot-card::after{content:none}
+.spot-logo{box-shadow:0 6px 16px rgba(10,67,71,.12);border:1px solid var(--line)}
+.spot-k{color:var(--green-ink)}.spot-t{color:var(--teal-deep)}.spot-d{color:var(--muted)}
+.count div{border:0;color:#fff;backdrop-filter:none}
+.count div:nth-child(1){background:#7655a4}.count div:nth-child(2){background:#1e8fb0}.count div:nth-child(3){background:#2f8f5b}.count div:nth-child(4){background:#d4582f}
+.count div:nth-child(1) b{color:#fff}
+.count span{color:rgba(255,255,255,.88)}
+.spot-btn{background:#0e6368;color:#fff}.spot-btn:hover{background:#0a4347}
+</style>
+<style>:root{color-scheme:light}body{margin:0;font-size:14px}img{max-width:100%}</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#home" aria-label="RSMC">
+      <img class="lt" src="img/logo_teal.svg" alt="مدارس الرياض – مدينة مسك" data-alt-ar="مدارس الرياض – مدينة مسك" data-alt-en="Riyadh Schools – Misk City">
+      <img class="lw" src="img/logo_white.svg" alt="" aria-hidden="true">
+    </a>
+    <nav class="nav" aria-label="main">
+      <a href="#competitions" data-i="navComp">المسابقات</a>
+      <a href="#calendar" data-i="navCal">التقويم</a>
+      <a href="#steps" data-i="navSteps">خطوات التسجيل</a>
+      <a href="#faq" data-i="navFaq">أسئلة شائعة</a>
+    </nav>
+    <button class="lang" id="langBtn" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z"/></svg><span id="langLbl">English</span></button>
+  </div>
+</header>
+
+<main id="home">
+  <div class="hero">
+    <svg class="mosaic" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><polygon points="-150,-225 -150,-75 -225,-150" fill="#c3b1e1" stroke="#c3b1e1" stroke-width="1"/><polygon points="-150,-225 -75,-150 -150,-75" fill="#35c4ec" stroke="#35c4ec" stroke-width="1"/><polygon points="-75,-150 -75,0 -150,-75" fill="#35c4ec" stroke="#35c4ec" stroke-width="1"/><polygon points="-75,-150 0,-75 -75,0" fill="#47ba79" stroke="#47ba79" stroke-width="1"/><polygon points="75,-150 75,0 0,-75" fill="#47ba79" stroke="#47ba79" stroke-width="1"/><polygon points="75,-150 150,-75 75,0" fill="#fed873" stroke="#fed873" stroke-width="1"/><polygon points="150,-225 225,-150 150,-75 75,-150" fill="#c3b1e1" stroke="#c3b1e1" stroke-width="1"/><polygon points="225,-150 300,-75 225,0 150,-75" fill="#47ba79" stroke="#47ba79" stroke-width="1"/><polygon points="225,-150 300,-225 375,-150" fill="#f47c57" stroke="#f47c57" stroke-width="1"/><polygon points="225,-150 375,-150 300,-75" fill="#35c4ec" stroke="#35c4ec" stroke-width="1"/><polygon points="450,-225 525,-150 450,-75 375,-150" fill="#47ba79" stroke="#47ba79" stroke-width="1"/><polygon points="525,-150 600,-75 525,0 450,-75" fill="#f47c57" stroke="#f47c57" stroke-width="1"/><polygon points="600,-75 675,-150 750,-75" fill="#35c4ec" stroke="#35c4ec" stroke-width="1"/><polygon points="600,-75 750,-75 675,0" fill="#47ba79" stroke="#47ba79" stroke-width="1"/><polygon points="750,-225 825,-150 750,-75 675,-150" fill="#fed873" stroke="#fed873" stroke-width="1"/><polygon points="825,-150 900,-75 825,0 750,-75" fill="#7655a4" stroke="#7655a4" stroke-width="1"/><polygon points="-150,-75 -75,0 -150,75 -225,0" fill="#7655a4" stroke="#7655a4" stroke-width="1"/><polygon points="-75,0 0,75 -75,150 -150,75" fill="#c3b1e1" stroke="#c3b1e1" stroke-width="1"/><polygon points="0,-75 0,75 -75,0" fill="#7655a4" stroke="#7655a4" stroke-width="1"/><polygon points="0,-75 75,0 0,75" fill="#47ba79" stroke="#47ba79" stroke-width="1"/><polygon points="75,0 150,75 75,150 0,75" fill="#47ba79" stroke="#47ba79" stroke-width="1"/><polygon points="75,0 150,-75 225,0" fill="#fed873" stroke="#fed873" stroke-width="1"/><polygon points="75,0 225,0 150,75" fill="#f47c57" stroke="#f47c57" stroke-width="1"/><polygon points="225,0 300,-75 375,0" fill="#c3b1e1" stroke="#c3b1e1" stroke-width="1"/><polygon points="225,0 375,0 300,75" fill="#35c4ec" stroke="#35c4ec" stroke-width="1"/><polygon points="375,0 450,75 375,150 300,75" fill="#7655a4" stroke="#7655a4" stroke-width="1"/><polygon points="375,0 450,-75 525,0" fill="#fed873" stroke="#fed873" stroke-width="1"/><polygon points="375,0 525,0 450,75" fill="#47ba79" stroke="#47ba79" stroke-width="1"/><polygon points="675,0 750,75 675,150 600,75" fill="#35c4ec" stroke="#35c4ec" stroke-width="1"/><polygon points="825,0 900,75 825,150 750,75" fill="#c3b1e1" stroke="#c3b1e1" stroke-width="1"/><polygon points="-150,75 -150,225 -225,150" fill="#fed873" stroke="#fed873" stroke-width="1"/><polygon points="-150,75 -75,150 -150,225" fill="#c3b1e1" stroke="#c3b1e1" stroke-width="1"/><polygon points="-75,150 -75,300 -150,225" fill="#47ba79" stroke="#47ba79" stroke-width="1"/><polygon points="-75,150 0,225 -75,300" fill="#35c4ec" stroke="#35c4ec" stroke-width="1"/><polygon points="75,150 150,225 75,300 0,225" fill="#fed873" stroke="#fed873" stroke-width="1"/><polygon points="150,75 225,150 150,225 75,150" fill="#35c4ec" stroke="#35c4ec" stroke-width="1"/><polygon points="225,150 300,75 375,150" fill="#f47c57" stroke="#f47c57" stroke-width="1"/><polygon points="225,150 375,150 300,225" fill="#fed873" stroke="#fed873" stroke-width="1"/><polygon points="375,150 450,225 375,300 300,225" fill="#7655a4" stroke="#7655a4" stroke-width="1"/><polygon points="450,75 525,150 450,225 375,150" fill="#f47c57" stroke="#f47c57" stroke-width="1"/><polygon points="825,150 900,225 825,300 750,225" fill="#7655a4" stroke="#7655a4" stroke-width="1"/><polygon points="-225,300 -150,225 -75,300" fill="#47ba79" stroke="#47ba79" stroke-width="1"/><polygon points="-225,300 -75,300 -150,375" fill="#7655a4" stroke="#7655a4" stroke-width="1"/><polygon points="-150,375 -75,300 0,375" fill="#ffffff" stroke="#ffffff" stroke-width="1"/><polygon points="-150,375 0,375 -75,450" fill="#47ba79" stroke="#47ba79" stroke-width="1"/><polygon points="0,225 75,300 0,375 -75,300" fill="#fed873" stroke="#fed873" stroke-width="1"/><polygon points="75,300 150,375 75,450 0,375" fill="#ffffff" stroke="#ffffff" stroke-width="1"/><polygon points="150,225 225,300 150,375 75,300" fill="#fed873" stroke="#fed873" stroke-width="1"/><polygon points="225,300 225,450 150,375" fill="#c3b1e1" stroke="#c3b1e1" stroke-width="1"/><polygon points="225,300 300,375 225,450" fill="#fed873" stroke="#fed873" stroke-width="1"/><polygon points="525,300 525,450 450,375" fill="#35c4ec" stroke="#35c4ec" stroke-width="1"/><polygon points="525,300 600,375 525,450" fill="#47ba79" stroke="#47ba79" stroke-width="1"/><polygon points="600,375 675,300 750,375" fill="#ffffff" stroke="#ffffff" stroke-width="1"/><polygon points="600,375 750,375 675,450" fill="#f47c57" stroke="#f47c57" stroke-width="1"/><polygon points="-225,450 -150,375 -75,450" fill="#35c4ec" stroke="#35c4ec" stroke-width="1"/><polygon points="-225,450 -75,450 -150,525" fill="#ffffff" stroke="#ffffff" stroke-width="1"/><polygon points="-75,450 0,525 -75,600 -150,525" fill="#fed873" stroke="#fed873" stroke-width="1"/><polygon points="-75,450 0,375 75,450" fill="#c3b1e1" stroke="#c3b1e1" stroke-width="1"/><polygon points="-75,450 75,450 0,525" fill="#7655a4" stroke="#7655a4" stroke-width="1"/><polygon points="75,450 150,525 75,600 0,525" fill="#47ba79" stroke="#47ba79" stroke-width="1"/><polygon points="225,450 300,525 225,600 150,525" fill="#f47c57" stroke="#f47c57" stroke-width="1"/><polygon points="300,375 375,450 300,525 225,450" fill="#ffffff" stroke="#ffffff" stroke-width="1"/><polygon points="375,450 450,525 375,600 300,525" fill="#ffffff" stroke="#ffffff" stroke-width="1"/><polygon points="525,450 600,525 525,600 450,525" fill="#f47c57" stroke="#f47c57" stroke-width="1"/><polygon points="600,375 600,525 525,450" fill="#47ba79" stroke="#47ba79" stroke-width="1"/><polygon points="600,375 675,450 600,525" fill="#ffffff" stroke="#ffffff" stroke-width="1"/><polygon points="750,375 825,450 750,525 675,450" fill="#ffffff" stroke="#ffffff" stroke-width="1"/><polygon points="-75,600 0,675 -75,750 -150,675" fill="#f47c57" stroke="#f47c57" stroke-width="1"/><polygon points="-75,600 0,525 75,600" fill="#35c4ec" stroke="#35c4ec" stroke-width="1"/><polygon points="-75,600 75,600 0,675" fill="#ffffff" stroke="#ffffff" stroke-width="1"/><polygon points="75,600 75,750 0,675" fill="#47ba79" stroke="#47ba79" stroke-width="1"/><polygon points="75,600 150,675 75,750" fill="#7655a4" stroke="#7655a4" stroke-width="1"/><polygon points="150,525 225,600 150,675 75,600" fill="#7655a4" stroke="#7655a4" stroke-width="1"/><polygon points="300,675 375,600 450,675" fill="#fed873" stroke="#fed873" stroke-width="1"/><polygon points="300,675 450,675 375,750" fill="#47ba79" stroke="#47ba79" stroke-width="1"/><polygon points="375,600 450,525 525,600" fill="#c3b1e1" stroke="#c3b1e1" stroke-width="1"/><polygon points="375,600 525,600 450,675" fill="#7655a4" stroke="#7655a4" stroke-width="1"/><polygon points="600,525 675,600 600,675 525,600" fill="#ffffff" stroke="#ffffff" stroke-width="1"/><polygon points="600,675 675,600 750,675" fill="#f47c57" stroke="#f47c57" stroke-width="1"/><polygon points="600,675 750,675 675,750" fill="#fed873" stroke="#fed873" stroke-width="1"/><polygon points="750,525 825,600 750,675 675,600" fill="#c3b1e1" stroke="#c3b1e1" stroke-width="1"/><polygon points="825,600 900,675 825,750 750,675" fill="#35c4ec" stroke="#35c4ec" stroke-width="1"/><polygon points="-150,675 -150,825 -225,750" fill="#f47c57" stroke="#f47c57" stroke-width="1"/><polygon points="-150,675 -75,750 -150,825" fill="#35c4ec" stroke="#35c4ec" stroke-width="1"/><polygon points="-75,750 0,825 -75,900 -150,825" fill="#f47c57" stroke="#f47c57" stroke-width="1"/><polygon points="0,675 75,750 0,825 -75,750" fill="#fed873" stroke="#fed873" stroke-width="1"/><polygon points="75,750 75,900 0,825" fill="#47ba79" stroke="#47ba79" stroke-width="1"/><polygon points="75,750 150,825 75,900" fill="#ffffff" stroke="#ffffff" stroke-width="1"/><polygon points="225,750 300,825 225,900 150,825" fill="#47ba79" stroke="#47ba79" stroke-width="1"/><polygon points="225,750 300,675 375,750" fill="#ffffff" stroke="#ffffff" stroke-width="1"/><polygon points="225,750 375,750 300,825" fill="#f47c57" stroke="#f47c57" stroke-width="1"/><polygon points="525,750 525,900 450,825" fill="#47ba79" stroke="#47ba79" stroke-width="1"/><polygon points="525,750 600,825 525,900" fill="#7655a4" stroke="#7655a4" stroke-width="1"/><polygon points="525,750 600,675 675,750" fill="#c3b1e1" stroke="#c3b1e1" stroke-width="1"/><polygon points="525,750 675,750 600,825" fill="#7655a4" stroke="#7655a4" stroke-width="1"/><polygon points="675,750 750,825 675,900 600,825" fill="#47ba79" stroke="#47ba79" stroke-width="1"/><polygon points="750,675 825,750 750,825 675,750" fill="#47ba79" stroke="#47ba79" stroke-width="1"/></svg>
+    <div class="wrap">
+      <div class="hero-txt">
+        <span class="eyebrow"><span class="dot"></span><span data-i="eyebrow">العام الدراسي 2026 – 2027</span></span>
+        <h1><span class="l1" data-i="h1a">بوابة مسابقات</span><span class="l2" data-i="h1b">مدارس الرياض – مدينة مسك</span></h1>
+        <p class="lead" data-i="lead">كل المسابقات المتاحة لطلبتنا في مكان واحد: المواعيد، والتفاصيل، والأدلة الرسمية، وروابط التسجيل. اختر المسابقة المناسبة وسجّل قبل آخر موعد.</p>
+        <div class="cta">
+          <a class="btn btn-hero" href="#competitions"><span data-i="ctaExplore">استكشف المسابقات</span><svg class="flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-hero-ghost" href="#calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span data-i="ctaCal">التقويم الكامل</span></a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b id="stTotal">10</b><span data-i="stComp">مسابقات</span></div>
+          <div class="stat"><b>4</b><span data-i="stFields">مجالات</span></div>
+          <div class="stat"><b id="stOpen">–</b><span data-i="stOpen">مفتوحة للتسجيل الآن</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap spot" id="spot"></div>
+
+  <section id="competitions" class="wrap sec">
+    <div class="sec-head">
+      <div>
+        <span class="kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg><span data-i="kComp">المسابقات</span></span>
+        <h2 data-i="hComp">اختر المسابقة المناسبة</h2>
+        <p class="sub" data-i="sComp">صفِّ حسب المجال أو الصف، واضغط على أي مسابقة لعرض كل تفاصيلها ودليلها الرسمي ورابط التسجيل.</p>
+      </div>
+    </div>
+    <div class="filters" role="group" aria-label="filters">
+      <div class="chips" id="chips"></div>
+      <div class="fsel">
+        <label for="grade" data-i="lblGrade">الصف</label>
+        <select id="grade"></select>
+        <label class="toggle"><input type="checkbox" id="openOnly"><span data-i="openOnly">المفتوحة فقط</span></label>
+        <label for="q" class="sr" data-i="search">بحث</label>
+        <input type="search" id="q" placeholder="ابحث باسم المسابقة" data-ph="searchPh">
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="calendar" class="wrap sec">
+    <div class="sec-head">
+      <div>
+        <span class="kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span data-i="kCal">التقويم</span></span>
+        <h2 data-i="hCal">مواعيد العام كاملة</h2>
+        <p class="sub" data-i="sCal">آخر مواعيد التسجيل والاختبارات والجولات النهائية، مرتبة حسب الشهر. اضغط على أي موعد لفتح تفاصيل المسابقة.</p>
+      </div>
+      <div class="legend">
+        <span><i style="background:#fed873"></i><span data-i="lgReg">آخر موعد للتسجيل</span></span>
+        <span><i style="background:#0e6368"></i><span data-i="lgTest">موعد الاختبار</span></span>
+        <span><i style="background:#b8a3e0"></i><span data-i="lgFinal">جولة نهائية / نتائج</span></span>
+        <a class="sbtn" href="docs/calendar.pdf" target="_blank" rel="noopener" data-i="calPdf">تقويم حقيبة المسابقات الرسمي (PDF)</a>
+      </div>
+    </div>
+    <div class="cal" id="cal"></div>
+  </section>
+
+  <section id="steps" class="wrap sec">
+    <div class="sec-head"><div>
+      <span class="kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg><span data-i="kSteps">خطوات التسجيل</span></span>
+      <h2 data-i="hSteps">من الاختيار إلى يوم الاختبار</h2>
+    </div></div>
+    <div class="steps" id="stepsList"></div>
+  </section>
+
+  <section id="faq" class="wrap sec">
+    <div class="sec-head"><div>
+      <span class="kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17h.01"/></svg><span data-i="kFaq">أسئلة شائعة</span></span>
+      <h2 data-i="hFaq">إجابات سريعة لأولياء الأمور</h2>
+    </div></div>
+    <div class="faq" id="faqList"></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>
+      <img src="img/logo_white.svg" alt="مدارس الرياض – مدينة مسك" data-alt-ar="مدارس الرياض – مدينة مسك" data-alt-en="Riyadh Schools – Misk City">
+      <div class="slogan" data-i="slogan">من هنا يُصنع المستقبل</div>
+      <p data-i="disclaimer">المعلومات مأخوذة من الأدلة والإعلانات الرسمية للجهات المنظمة للعام 2026 – 2027، وقد تتغير مواعيد الجولات العالمية. التسجيل والدفع يتمّان مباشرة عبر الموقع الرسمي لكل مسابقة، ولا تجمع هذه الصفحة أي بيانات شخصية.</p>
+    </div>
+    <img class="motif" src="img/motif.svg" alt="" aria-hidden="true">
+  </div>
+</footer>
+
+<div class="panel" id="panel" hidden role="dialog" aria-modal="true" aria-labelledby="pTitle"></div>
+<div class="viewer" id="viewer" hidden role="dialog" aria-modal="true" aria-label="PDF"></div>
+
+<script>
+(function(){
+"use strict";
+const CB='https://contestbag.com/', FORUM='https://contestbag.com/forum';
+const KMC_URL='https://academy.kaust.edu.sa/ar/program/%d9%85%d8%a7-%d9%82%d8%a8%d9%84-%d8%a7%d9%84%d8%ac%d8%a7%d9%85%d8%b9%d8%a9/kaust-mathematics-competition/';
+
+/* ---------- UI strings ---------- */
+const UI={
+ navComp:['المسابقات','Competitions'],navCal:['التقويم','Calendar'],navSteps:['خطوات التسجيل','How to register'],navFaq:['أسئلة شائعة','FAQ'],
+ eyebrow:['العام الدراسي 2026 – 2027','Academic year 2026 – 2027'],
+ h1a:['بوابة مسابقات','Competitions Hub'],h1b:['مدارس الرياض – مدينة مسك','Riyadh Schools – Misk City'],
+ lead:['كل المسابقات المتاحة لطلبتنا في مكان واحد: المواعيد، والتفاصيل، والأدلة الرسمية، وروابط التسجيل. اختر المسابقة المناسبة وسجّل قبل آخر موعد.','Every competition open to our students in one place: dates, details, official guides and registration links. Pick the right competition and register before the deadline.'],
+ ctaExplore:['استكشف المسابقات','Explore competitions'],ctaCal:['التقويم الكامل','Full calendar'],
+ stComp:['مسابقات','competitions'],stFields:['مجالات','subjects'],stOpen:['مفتوحة للتسجيل الآن','open for registration'],
+ kComp:['المسابقات','Competitions'],hComp:['اختر المسابقة المناسبة','Find the right competition'],
+ sComp:['صفِّ حسب المجال أو الصف، واضغط على أي مسابقة لعرض كل تفاصيلها ودليلها الرسمي ورابط التسجيل.','Filter by subject or grade, then open any competition to see its full details, official guide and registration link.'],
+ lblGrade:['الصف','Grade'],openOnly:['المفتوحة فقط','Open only'],search:['بحث','Search'],searchPh:['ابحث باسم المسابقة','Search by name'],
+ kCal:['التقويم','Calendar'],hCal:['مواعيد العام كاملة','The whole year at a glance'],
+ sCal:['آخر مواعيد التسجيل والاختبارات والجولات النهائية، مرتبة حسب الشهر. اضغط على أي موعد لفتح تفاصيل المسابقة.','Registration deadlines, test days and final rounds by month. Tap any date to open the competition.'],
+ calPdf:['تقويم حقيبة المسابقات الرسمي (PDF)','Official Contest Bag calendar (PDF)'],
+ lgReg:['آخر موعد للتسجيل','Registration closes'],lgTest:['موعد الاختبار','Test day'],lgFinal:['جولة نهائية / نتائج','Final round / results'],
+ kSteps:['خطوات التسجيل','How to register'],hSteps:['من الاختيار إلى يوم الاختبار','From choosing to test day'],
+ kFaq:['أسئلة شائعة','FAQ'],hFaq:['إجابات سريعة لأولياء الأمور','Quick answers for parents'],
+ slogan:['من هنا يُصنع المستقبل','The future starts here.'],
+ disclaimer:['المعلومات مأخوذة من الأدلة والإعلانات الرسمية للجهات المنظمة للعام 2026 – 2027، وقد تتغير مواعيد الجولات العالمية. التسجيل والدفع يتمّان مباشرة عبر الموقع الرسمي لكل مسابقة، ولا تجمع هذه الصفحة أي بيانات شخصية.','Information is taken from the organizers’ official 2026 – 2027 guides and announcements; global round dates may change. Registration and payment happen directly on each competition’s official website. This page collects no personal data.'],
+ all:['الكل','All'],allGrades:['كل الصفوف','All grades'],gradeN:['الصف ','Grade '],
+ subj:{en:['اللغة الإنجليزية','English'],math:['الرياضيات','Math'],sci:['العلوم','Science'],code:['البرمجة والتقنية','Coding & Tech']},
+ grades:['الصفوف','Grades'],regClose:['آخر موعد للتسجيل','Registration closes'],testDay:['موعد الاختبار','Test day'],mode:['طريقة الاختبار','Format'],
+ details:['التفاصيل','Details'],daysLeft:[n=>n===1?'يوم واحد متبقٍّ':(n===2?'يومان متبقيان':(n<=10?n+' أيام متبقية':n+' يومًا متبقيًا')),n=>n===1?'1 day left':n+' days left'],
+ today:['آخر يوم اليوم','Closes today'],closed:['انتهى التسجيل','Registration closed'],multi:['مواعيد متعددة','Multiple dates'],
+ nextReg:['أقرب موعد تسجيل','Next deadline'],noneOpen:['لا توجد مسابقات مفتوحة حاليًا','No competitions open right now'],
+ days:['يوم','days'],hours:['ساعة','hours'],mins:['دقيقة','min'],secs:['ثانية','sec'],
+ spotK:['أقرب موعد لإغلاق التسجيل','Next registration deadline'],openDetails:['التفاصيل والتسجيل','Details & registration'],
+ empty:['لا توجد مسابقات تطابق هذا الاختيار. جرّب صفًّا أو مجالًا آخر.','No competitions match this selection. Try another grade or subject.'],
+ byBirth:['حسب سنة الميلاد','By birth year'],bySchool:['حسب إعلان المدرسة','See school announcement'],
+ close:['إغلاق','Close'],register:['سجّل الآن','Register now'],guide:['الدليل الرسمي','Official guide'],
+ jOverview:['نظرة عامة','Overview'],jCats:['الفئات والاختبار','Categories & test'],jDates:['المواعيد','Dates'],jAwards:['الجوائز','Awards'],jPrep:['الاستعداد','Preparation'],jDocs:['الملفات','Files'],
+ hOverview:['عن المسابقة','About'],hFacts:['معلومات سريعة','Key facts'],hCats:['الفئات والاختبار','Categories and test'],hSessions:['اختر موعد الاختبار','Choose your test date'],hDates:['المواعيد المهمة','Key dates'],hAwards:['الميداليات والجوائز','Medals and prizes'],hPrep:['الاستعداد للمسابقة','Getting ready'],hDocs:['الملفات والأدلة','Files and guides'],
+ view:['عرض','View'],openTab:['فتح في نافذة جديدة','Open in new tab'],loading:['جارٍ تحميل الملف…','Loading file…'],
+ viewFail:['تعذّر عرض الملف هنا. افتحه في نافذة جديدة.','This file can’t be shown here. Open it in a new tab.'],
+ test:['اختبار','Test'],regBy:['التسجيل حتى ','Register by '],nextBadge:['الموعد القادم','Next'],
+ fee:['الرسوم','Fee'],lang:['لغة الاختبار','Test language'],time:['وقت الاختبار','Test time'],org:['الجهة المنظمة','Organizer'],
+ past:['انتهى','Passed'],upcoming:['قادم','Upcoming'],
+ stepsList:[
+  [['اختر المسابقة','Choose a competition'],['تصفّح المسابقات حسب الصف والمجال، وتأكد من الفئة المناسبة لابنك أو ابنتك (بعضها حسب الصف وبعضها حسب سنة الميلاد).','Browse by grade and subject, and check the right category for your child (some go by grade, some by year of birth).']],
+  [['اقرأ الدليل الرسمي','Read the official guide'],['افتح ملف الدليل من صفحة المسابقة: المنهج، وعدد الأسئلة، والمدة، وطريقة الاختبار، والجوائز.','Open the guide on the competition page: syllabus, number of questions, duration, format and prizes.']],
+  [['سجّل قبل آخر موعد','Register before the deadline'],['التسجيل والدفع يتمّان مباشرة عبر الموقع الرسمي للمسابقة من زر «سجّل الآن».','Registration and payment happen directly on the competition’s official website through the “Register now” button.']],
+  [['استعد','Prepare'],['استخدم مواد التدريب في منتدى المسابقة، والدورات الأسبوعية المجانية حين تتوفر.','Use the practice materials on the competition forum and the free weekly sessions where offered.']],
+  [['يوم الاختبار','Test day'],['التزم بالموعد والتعليمات التي ترسلها الجهة المنظمة. أغلب الاختبارات عبر الإنترنت من المنزل بمراقبة عن بُعد.','Follow the time and instructions sent by the organizer. Most tests are online from home with remote proctoring.']]
+ ],
+ faqList:[
+  [['من يقوم بالتسجيل؟','Who registers the student?'],['يسجّل وليّ الأمر مباشرة عبر الموقع الرسمي لكل مسابقة: موقع Contest Bag لمسابقات حقيبة المسابقات، وموقع أكاديمية كاوست لمسابقة KMC. وبيبراس موهبة عبر بوابة بيبراس. أما «التعلّم عبر اللعب» فتشارك فيه الفرق عبر المدرسة بتسليم ملفها إلى لجنة التحكيم المدرسية.','Parents register directly on each competition’s official website: Contest Bag for the Contest Bag competitions, KAUST Academy for KMC and the Bebras portal for Bebras Mawhiba. For Learning Through Play, teams enter through the school by submitting their file to the school judging committee.']],
+  [['كم رسوم المشاركة؟','How much is the fee?'],['245 ريالًا لكل مسابقة من مسابقات حقيبة المسابقات (الجولة الوطنية أو التمهيدية)، و100 ريال لمسابقة كاوست للرياضيات غير شاملة ضريبة القيمة المضافة.','SAR 245 per Contest Bag competition (national or preliminary round), and SAR 100 for the KAUST Mathematics Competition, excluding VAT.']],
+  [['أين يُقام الاختبار؟','Where is the test held?'],['مسابقات حقيبة المسابقات وبيبراس عبر الإنترنت من المنزل، ومعظمها بمراقبة عن بُعد. الاختبار التأهيلي لمسابقة كاوست حضوري في مراكز اختبار بإدارات التعليم.','Contest Bag competitions and Bebras are online from home, most with remote proctoring. The KMC qualifying test is in person at test centres in the education directorates.']],
+  [['متى يبدأ الاختبار؟','What time does the test start?'],['حسب تقويم حقيبة المسابقات، تبدأ جميع الاختبارات الساعة 11:00 صباحًا، عدا تين ايغل للرياضيات فيبدأ الساعة 1:30 ظهرًا.','According to the Contest Bag calendar, all tests start at 11:00 AM, except TeenEagle Math at 1:30 PM.']],
+  [['بأي لغة تكون الأسئلة؟','What language are the questions in?'],['بالإنجليزية في أغلب المسابقات. ستيمكو للرياضيات وستيمكو للعلوم بالعربية والإنجليزية، ومسابقة كاوست بالعربية والإنجليزية.','English for most competitions. STEMCO Math and STEMCO Science are in Arabic and English, and KMC is in Arabic and English.']],
+  [['هل تشمل خصومات الجولة العالمية السفر؟','Do global round discounts cover travel?'],['لا. الخصومات على رسوم المشاركة فقط، ولا تشمل الطيران أو السكن أو التأشيرة. أما الجولة النهائية لمسابقة كاوست فتكاليفها مغطاة بالكامل للمتأهلين.','No. Discounts apply to the participation fee only and do not cover flights, accommodation or visas. The KMC final round is fully covered for finalists.']],
+  [['هل يمكن اختيار موعد آخر؟','Can we choose another date?'],['نعم في تين ايغل للغة الإنجليزية وللرياضيات: الجولة الوطنية متاحة في ستة مواعيد بين نوفمبر وأبريل.','Yes for TeenEagle English and Math: the national round runs on six dates between November and April.']],
+  [['هل مواعيد الجولات العالمية نهائية؟','Are global round dates final?'],['لا، تذكر الأدلة أن مواعيد الجولات العالمية قابلة للتغيير. راجعوا الموقع الرسمي قبل التخطيط للسفر.','No. The guides state that global round dates may change. Check the official website before planning travel.']]
+ ]
+};
+
+/* ---------- Data ---------- */
+const MEDALS_PCT=[[['الميدالية الذهبية','Gold medal'],['أعلى 8%','Top 8%']],[['الميدالية الفضية','Silver medal'],['الـ 16% التالية','Next 16%']],[['الميدالية البرونزية','Bronze medal'],['الـ 24% التالية','Next 24%']],[['شهادة تميّز','Merit award'],['الـ 32% التالية','Next 32%']],[['شهادة مشاركة','Participation certificate'],['بقية المشاركين','All remaining participants']]];
+const MEDALS_80=[[['الميدالية الذهبية','Gold medal'],['80% – 100%','80% – 100%']],[['الميدالية الفضية','Silver medal'],['60% – 79%','60% – 79%']],[['الميدالية البرونزية','Bronze medal'],['40% – 59%','40% – 59%']],[['شهادة مشاركة','Participation certificate'],['0% – 39%','0% – 39%']]];
+const MEDALS_TE=[[['الميدالية الذهبية','Gold medal'],['90% – 100%','90% – 100%']],[['الميدالية الفضية','Silver medal'],['75% – 89.9%','75% – 89.9%']],[['الميدالية البرونزية','Bronze medal'],['60% – 74.9%','60% – 74.9%']],[['شهادة تقدير','Honourable mention (certificate)'],['40% – 59.9%','40% – 59.9%']]];
+const TOP3=[['يحصل أصحاب المراكز الثلاثة الأولى على ميداليات وجوائز خاصة، وخصم على رسوم المشاركة في الجولة العالمية: الأول 60%، والثاني 50%، والثالث 40%.','The top three winners receive medals, special prizes and a discount on the Global Round participation fee: 1st 60%, 2nd 50%, 3rd 40%.'],['عند التعادل، يُقدَّم المشارك الذي أنهى الاختبار في وقت أقصر.','In a tie, priority goes to the participant who finishes in the shortest time.'],['الخصم على رسوم المشاركة فقط، ولا يشمل الطيران أو السكن أو التأشيرة.','The discount covers the participation fee only, not flights, accommodation or visas.']];
+const ONLINE=['عبر الإنترنت من المنزل بمراقبة عن بُعد','Online from home, remote proctoring'];
+const TE_SESS=[['2026-11-07','2026-10-31'],['2026-11-28','2026-11-21'],['2026-12-05','2026-11-28'],['2027-01-09','2027-01-02'],['2027-01-30','2027-01-23'],['2027-04-10','2027-04-03']];
+const TE_ROUNDS=[
+ {d:'2027-03-25',d2:'2027-03-30',t:'final',l:['الجولة العالمية – ماليزيا','Global round – Malaysia']},
+ {d:'2027-04-01',d2:'2027-04-03',t:'final',l:['الجولة الإقليمية لدول الخليج – الرياض','GCC Regional round – Riyadh']},
+ {d:'2027-06-20',d2:'2027-06-27',t:'final',l:['الجولة العالمية – لندن','Global round – London']},
+ {d:'2027-08-01',d2:'2027-08-08',t:'final',l:['الجولة العالمية – لندن','Global round – London']}];
+const PREP_CB=[['المنهج المحدد لكل مسابقة هو المرجع الأساسي للاستعداد.','Each competition’s syllabus is the main preparation resource.'],['مواد تدريبية للتعرّف على طبيعة الأسئلة متاحة في منتدى المسابقة الرسمي.','Practice materials showing the question style are on the official forum.'],['يُنصح بالاستعانة بالكتب المدرسية والمصادر التعليمية الأخرى.','School textbooks and other learning resources help too.']];
+
+const C=[
+{id:'te-en',subj:'en',logo:'img/lg-teeneagle-en.png',art:'img/art-te-en.webp',
+ name:['تين ايغل للغة الإنجليزية','TeenEagle English'],org:['Contest Bag · TeenEagle','Contest Bag · TeenEagle'],
+ short:['مسابقة عالمية في اللغة الإنجليزية مبنية على رواية وفيلم وقائمة كلمات للتهجئة.','A global English competition built on a novel, a movie and a spelling list.'],
+ about:[['مسابقة عالمية في اللغة الإنجليزية للطلبة من 8 إلى 18 عامًا، تهدف إلى تنمية الكفاءة اللغوية والتفكير الناقد والعمل الجماعي والثقة بالنفس.','A global English competition for students aged 8–18 that builds language proficiency, critical thinking, teamwork and confidence.'],['يدرس المشاركون رواية وفيلمًا وقائمة كلمات للتهجئة مرتبطة بأهداف التنمية المستدامة، ثم يتنافسون في جولات تأهيلية وطنية وإقليمية للوصول إلى النهائيات العالمية التي تشمل اختبار المعرفة، والتهجئة، وتحدي الكتابة، والمناظرة الإقناعية.','Students study one novel, one movie and a spelling list linked to the Sustainable Development Goals, then compete in national and regional qualifiers to reach the Global Finals: Knowledge Quiz, Spelling Bee, Writing Challenge and Persuasive Speaking Debate.']],
+ gmin:null,gmax:null,gradeLbl:['حسب سنة الميلاد (2009 – 2017)','By birth year (2009 – 2017)'],birth:true,
+ facts:[[['الأسئلة','Questions'],['80 سؤالًا: اختيار من متعدد وصح وخطأ','80: multiple choice and true/false']],[['المدة','Duration'],['60 دقيقة','60 minutes']],[['الجولة الوطنية','National round'],['عبر الإنترنت','Online']],[['التأهل','Qualifying'],['60% فأكثر للجولتين الإقليمية والعالمية','60% or more for the Regional and Global rounds']],[['وقت الاختبار','Test time'],['11:00 صباحًا','11:00 AM']],[['الرسوم','Fee'],['245 ريالًا','SAR 245']]],
+ mode:['عبر الإنترنت','Online'],fee:245,
+ cats:{head:[['الفئة','Category'],['سنة الميلاد','Born'],['الرواية','Novel'],['الفيلم','Movie'],['الهدف والقيمة','SDG & value']],rows:[
+  [['تين ايغل 1','TeenEagle 1'],['2015 – 2017','2015 – 2017'],['Crenshaw – Katherine Applegate','Crenshaw – Katherine Applegate'],['Luca (2021)','Luca (2021)'],['الحد من أوجه عدم المساواة · التقبّل','Reduced Inequalities · Acceptance']],
+  [['تين ايغل 2','TeenEagle 2'],['2012 – 2014','2012 – 2014'],['Turtle Moon – Hannah Gold','Turtle Moon – Hannah Gold'],['The Jungle Book (2016)','The Jungle Book (2016)'],['الحياة في البر · المسؤولية','Life on Land · Responsibility']],
+  [['تين ايغل 3','TeenEagle 3'],['2009 – 2011','2009 – 2011'],['The Switch – Roland Smith','The Switch – Roland Smith'],['Slumberland (2022)','Slumberland (2022)'],['السلام والعدل والمؤسسات القوية · المثابرة','Peace, Justice and Strong Institutions · Perseverance']]]},
+ sessions:TE_SESS,extra:TE_ROUNDS,
+ awards:MEDALS_TE,awardsNote:['يحصل جميع المشاركين على شهادة مشاركة رقمية.','All participants receive a digital participation certificate.'],
+ prizes:[['الجولة الوطنية: يحصل أصحاب المراكز الثلاثة الأولى في كل شهر ومحاولة على خصم 50% على رسوم الجولة الإقليمية، أو 10% على رسوم الجولة العالمية (باقة المسابقة فقط).','National round: the top three each month and attempt get 50% off the Regional Round fee, or 10% off the Global Round fee (“Competition Only” package).'],['الجولة الإقليمية: خصم على رسوم الجولة العالمية للمراكز الثلاثة الأولى في كل مستوى: 60% و50% و40%، وخصم 10% لكل حاصل على ميدالية ذهبية.','Regional round: Global Round fee discounts for the top three in each level: 60%, 50%, 40%, plus 10% for every gold medallist.'],['الخصومات على رسوم المشاركة فقط، ولا تشمل الطيران أو السكن أو التأشيرة.','Discounts cover participation fees only, not flights, accommodation or visas.']],
+ prep:[['المصادر الثلاثة: الرواية المحددة، والفيلم المحدد، وقائمة كلمات التهجئة.','The three resources: the set novel, the set movie and the spelling list.'],['دورات تدريبية أسبوعية مجانية عبر الإنترنت لجميع المشاركين.','Free weekly online training sessions for all participants.'],['قائمة الكلمات وجدول الدورات متاحان في منتدى المسابقة.','The word list and session schedule are on the competition forum.']],
+ register:CB,forum:FORUM,
+ docs:[{f:['docs/te-en-ar.pdf','docs/te-en-en.pdf'],n:['دليل المسابقة','Competition guide']},{f:['docs/te-sources.pdf','docs/te-sources.pdf'],n:['مصادر الروايات والأفلام','Book and film sources'],d:['روابط الشراء والمشاهدة (بالإنجليزية)','Where to buy or watch (English)']},{f:['docs/te1-sample.pdf','docs/te1-sample.pdf'],n:['نماذج أسئلة – تين ايغل 1','Sample questions – TeenEagle 1'],d:['بالإنجليزية','English']},{f:['docs/te3-sample.pdf','docs/te3-sample.pdf'],n:['نماذج أسئلة – تين ايغل 3','Sample questions – TeenEagle 3'],d:['بالإنجليزية','English']},{f:['docs/te2-spelling.pdf','docs/te2-spelling.pdf'],n:['قائمة كلمات التهجئة – تين ايغل 2','Spelling list – TeenEagle 2'],d:['بالإنجليزية','English']},{f:['docs/te3-spelling.pdf','docs/te3-spelling.pdf'],n:['قائمة كلمات التهجئة – تين ايغل 3','Spelling list – TeenEagle 3'],d:['بالإنجليزية · قائمة تين ايغل 1 في منتدى المسابقة','English · TeenEagle 1 list is on the forum']}]},
+
+{id:'te-math',subj:'math',logo:'img/lg-teeneagle-math.png',art:'img/art-te-math.webp',
+ name:['تين ايغل للرياضيات (TMC)','TeenEagle Math (TMC)'],org:['Contest Bag · TeenEagle','Contest Bag · TeenEagle'],
+ short:['أولمبياد رياضيات دولي مبني على المنهج البريطاني، بستة مواعيد للجولة الوطنية.','An international math olympiad on the British curriculum, with six national-round dates.'],
+ about:[['أولمبياد دولي في الرياضيات للصفوف من 3 إلى 12، يتحدى الطلبة لتطوير مهارات حل المسائل وإبراز مواهبهم على مستوى عالمي. يعتمد على منهج الرياضيات البريطاني ويجمع بين الدقة الأكاديمية والتحديات الإبداعية.','An international mathematics olympiad for Grades 3–12 that pushes students to sharpen problem-solving skills and show their talent globally. It is built on the British Mathematics Curriculum and blends academic rigour with creative challenges.'],['تغطي الأسئلة: حل المسائل، والجبر، والهندسة، ونظرية الأعداد، والمنطق.','Questions cover problem solving, algebra, geometry, number theory and logic.']],
+ gmin:3,gmax:12,gradeLbl:['3 – 12 (الفئات حسب سنة الميلاد)','3 – 12 (categories by birth year)'],birth:true,
+ facts:[[['الأسئلة','Questions'],['30 سؤال اختيار من متعدد','30 multiple choice']],[['المدة','Duration'],['90 دقيقة','90 minutes']],[['اللغة','Language'],['الإنجليزية','English']],[['الجولة الوطنية','National round'],['عبر الإنترنت','Online']],[['وقت الاختبار','Test time'],['1:30 ظهرًا','1:30 PM']],[['التأهل','Qualifying'],['60% فأكثر للجولتين الإقليمية والعالمية','60% or more for the Regional and Global rounds']],[['الرسوم','Fee'],['245 ريالًا','SAR 245']]],
+ mode:['عبر الإنترنت','Online'],fee:245,
+ cats:{head:[['الفئة','Category'],['سنة الميلاد','Born']],rows:[[['TMC 1','TMC 1'],['2017 – 2018','2017 – 2018']],[['TMC 2','TMC 2'],['2015 – 2016','2015 – 2016']],[['TMC 3','TMC 3'],['2013 – 2014','2013 – 2014']],[['TMC 4','TMC 4'],['2011 – 2012','2011 – 2012']],[['TMC 5','TMC 5'],['2009 – 2010','2009 – 2010']]]},
+ sessions:TE_SESS,extra:TE_ROUNDS,
+ awards:MEDALS_TE,awardsNote:['يحصل جميع المشاركين على شهادة مشاركة رقمية.','All participants receive a digital participation certificate.'],
+ prizes:[['الجولة الوطنية: يحصل صاحب المركز الأول في كل مستوى وشهر ومحاولة على خصم 50% على رسوم الجولة الإقليمية، أو 10% على رسوم الجولة العالمية (باقة المسابقة فقط).','National round: first place in each level, month and attempt gets 50% off the Regional Round fee, or 10% off the Global Round fee (“Competition Only” package).'],['الجولة الإقليمية: خصم على رسوم الجولة العالمية للمركز الأول 60% وللثاني 50% في كل مستوى، وخصم 10% لكل حاصل على ميدالية ذهبية.','Regional round: Global Round fee discounts of 60% for 1st and 50% for 2nd in each level, plus 10% for every gold medallist.'],['الخصومات على رسوم المشاركة فقط، ولا تشمل الطيران أو السكن أو التأشيرة.','Discounts cover participation fees only, not flights, accommodation or visas.']],
+ prep:[['منهج TMC المحدد هو المرجع الأساسي.','The TMC curriculum is the main resource.'],['أسئلة من مسابقات سابقة للتدرّب على شكل الأسئلة ومستواها.','Past questions to practise the format and level.'],['دورات تدريبية أسبوعية عبر الإنترنت، وجدولها في منتدى المسابقة.','Weekly online training sessions; the schedule is on the forum.']],
+ register:CB,forum:FORUM,docs:[{f:['docs/te-math-ar.pdf','docs/te-math-en.pdf'],n:['دليل المسابقة','Competition guide']}]},
+
+{id:'stemco-math',subj:'math',logo:'img/lg-stemco-math.png',art:'img/art-stemco-math.webp',
+ name:['ستيمكو للرياضيات','STEMCO Mathematics'],org:['Contest Bag · STEMCO','Contest Bag · STEMCO'],
+ short:['أسئلة حديثة ومبتكرة وفق منهجية STEM، والاختبار بالعربية والإنجليزية.','Modern, innovative STEM-style questions, in Arabic and English.'],
+ about:[['مسابقة دولية في الرياضيات بأسئلة حديثة ومبتكرة متوافقة مع منهجية STEM، تنمّي حل المشكلات والتفكير المنطقي والناقد والتحليلي والإبداع الرياضي.','An international mathematics competition with modern, innovative questions aligned with STEM, developing problem solving and logical, critical and analytical thinking and mathematical creativity.'],['يحصل المتميزون على ميداليات ذهبية وفضية وبرونزية، ويتأهل الأعلى أداءً إلى النهائيات العالمية.','Top participants earn gold, silver and bronze medals, and the best qualify for the Global Finals.']],
+ gmin:3,gmax:12,gradeLbl:['3 – 12','3 – 12'],
+ facts:[[['المحتوى','Content'],['المنهج المدرسي العام، والمنهج السنغافوري مرجعًا','General school syllabus, Singapore curriculum as reference']],[['اللغة','Language'],['العربية والإنجليزية','Arabic and English']],[['الجولة الوطنية','National round'],ONLINE],[['وقت الاختبار','Test time'],['11:00 صباحًا','11:00 AM']],[['الجولة العالمية','Global round'],['جامعة سنغافورة الوطنية (NUS)','NUS University, Singapore']],[['الرسوم','Fee'],['245 ريالًا','SAR 245']]],
+ mode:['عن بُعد بمراقبة','Online, proctored'],fee:245,
+ cats:{head:[['الفئة','Category'],['الصفوف','Grades'],['الأسئلة','Questions'],['المدة','Duration']],rows:[
+  [['الابتدائي المتوسط','Primary Middle'],['3 – 4','3 – 4'],['20','20'],['60 دقيقة','60 min']],
+  [['الابتدائي العليا','Primary Senior'],['5 – 6','5 – 6'],['30','30'],['90 دقيقة','90 min']],
+  [['المتوسط الأولى','Secondary Junior'],['7 – 8','7 – 8'],['30','30'],['90 دقيقة','90 min']],
+  [['الثانوي الأولى','Secondary Middle'],['9 – 10','9 – 10'],['40','40'],['120 دقيقة','120 min']],
+  [['الثانوي العليا','Secondary Senior'],['11 – 12','11 – 12'],['40','40'],['120 دقيقة','120 min']]],note:['جميع الأسئلة اختيار من متعدد.','All questions are multiple choice.']},
+ dates:[{d:'2027-01-30',t:'reg'},{d:'2027-02-06',t:'test',l:['الجولة الوطنية','National round']},{d:'2027-06-19',t:'final',l:['النهائيات العالمية – سنغافورة (قابلة للتغيير)','Global Finals – Singapore (may change)']}],
+ awards:MEDALS_80,prizes:TOP3,prep:PREP_CB,register:CB,forum:FORUM,docs:[{f:['docs/stemco-math-ar.pdf','docs/stemco-math-en.pdf'],n:['دليل المسابقة','Competition guide']}]},
+
+{id:'timo',subj:'math',logo:'img/lg-timo.png',art:'img/art-timo.webp',
+ name:['الأولمبياد التركي الدولي للرياضيات (TIMO)','Turkic International Mathematical Olympiad (TIMO)'],org:['Contest Bag · TIMO','Contest Bag · TIMO'],
+ short:['أولمبياد يجمع طلبة من ثقافات مختلفة، وجولته العالمية في إسطنبول.','An olympiad that brings cultures together, with its global round in Istanbul.'],
+ about:[['أولمبياد يجمع الشباب من ثقافات مختلفة على منصة للتميز الرياضي والعلمي، ويركّز على التفكير الناقد وحل المشكلات والعمل الجماعي، ويعزز التبادل الثقافي والفكري.','An olympiad that brings young people from different cultures together on a platform of mathematical and scientific excellence, focusing on critical thinking, problem solving and teamwork, and promoting cultural exchange.']],
+ gmin:3,gmax:12,gradeLbl:['3 – 12','3 – 12'],
+ facts:[[['الأسئلة','Questions'],['25 سؤال اختيار من متعدد','25 multiple choice']],[['المدة','Duration'],['90 دقيقة','90 minutes']],[['الدرجات','Scoring'],['+4 للصحيحة، −1 للخاطئة، 0 للمتروكة (من 100)','+4 correct, −1 wrong, 0 blank (out of 100)']],[['اللغة','Language'],['الإنجليزية','English']],[['الجولة التمهيدية','Preliminary round'],ONLINE],[['وقت الاختبار','Test time'],['11:00 صباحًا','11:00 AM']],[['الرسوم','Fee'],['245 ريالًا','SAR 245']]],
+ mode:['عن بُعد بمراقبة','Online, proctored'],fee:245,
+ cats:{head:[['الصفوف','Grades'],['الأسئلة','Questions'],['المدة','Duration']],rows:[[['3 – 10','3 – 10'],['25','25'],['90 دقيقة','90 min']],[['11 – 12 (فئة SS)','11 – 12 (SS category)'],['25','25'],['90 دقيقة','90 min']]],note:['لكل صف مجموعة أسئلة خاصة به. المحتوى: منهج الرياضيات المدرسي العام.','Each grade has its own set of questions. Content: general school math syllabus.']},
+ dates:[{d:'2027-04-10',t:'reg'},{d:'2027-04-17',t:'test',l:['الجولة التمهيدية','Preliminary round']},{d:'2027-07-02',t:'final',l:['النهائيات العالمية – إسطنبول (قابلة للتغيير)','Global Finals – Istanbul (may change)']}],
+ awards:[[['الميدالية الذهبية','Gold medal'],['91 – 100','91 – 100']],[['الميدالية الفضية','Silver medal'],['75 – 90','75 – 90']],[['الميدالية البرونزية','Bronze medal'],['50 – 74','50 – 74']],[['شهادة تقدير','Honorable mention'],['40 – 49','40 – 49']],[['شهادة مشاركة','Participation certificate'],['1 – 39','1 – 39']]],
+ prizes:[['يحصل صاحب المركز الأول في كل صف على ميدالية وجائزة خاصة، وخصم 60% على رسوم المشاركة في الجولة العالمية.','First place in each grade receives a medal, a special prize and 60% off the Global Round participation fee.'],TOP3[1],TOP3[2]],
+ prep:PREP_CB,register:CB,forum:FORUM,docs:[{f:['docs/timo-ar.pdf','docs/timo-en.pdf'],n:['دليل المسابقة','Competition guide']}]},
+
+{id:'hkiso',subj:'sci',logo:'img/lg-hkiso.png',art:'img/art-hkiso.webp',
+ name:['أولمبياد العلوم الدولي في هونغ كونغ (HKISO)','Hong Kong International Science Olympiad (HKISO)'],org:['Contest Bag · HKISO','Contest Bag · HKISO'],
+ short:['الفيزياء والكيمياء والأحياء، مع تحدٍّ اختياري لتجربة علمية بالفيديو.','Physics, chemistry and biology, plus an optional science-experiment video.'],
+ about:[['مسابقة علمية عالمية تغطي الفيزياء والأحياء والكيمياء بمحتوى متوافق مع المنهج السنغافوري، وتساعد الطلبة على اكتشاف نقاط قوتهم.','A global science competition covering physics, biology and chemistry, aligned with the Singapore curriculum, that helps students discover their strengths.'],['يشارك الطلبة في تحدي التجربة العلمية بإعداد فيديو مدته 5 دقائق عن موضوع محدد. وتُقام الجولة النهائية بالتعاون مع جامعة سنغافورة الوطنية (NUS).','Students can take part in the Science Experiment Challenge with a 5-minute video on a given topic. The final round is co-organized with the National University of Singapore (NUS).']],
+ gmin:3,gmax:12,gradeLbl:['3 – 12','3 – 12'],
+ facts:[[['الأسئلة','Questions'],['20 سؤال اختيار من متعدد','20 multiple choice']],[['المدة','Duration'],['60 دقيقة','60 minutes']],[['الدرجات','Scoring'],['+2 للصحيحة، 0 للمتروكة، −1 للخاطئة','+2 correct, 0 blank, −1 wrong']],[['اللغة','Language'],['الإنجليزية','English']],[['الجولة الأولى','Heat round'],ONLINE],[['وقت الاختبار','Test time'],['11:00 صباحًا','11:00 AM']],[['الرسوم','Fee'],['245 ريالًا','SAR 245']]],
+ mode:['عن بُعد بمراقبة','Online, proctored'],fee:245,
+ cats:{head:[['المستوى','Level'],['الصفوف','Grades']],rows:[[['المرحلة الابتدائية','Primary'],['3 – 6','3 – 6']],[['المرحلة الثانوية','Secondary'],['7 – 9','7 – 9']],[['الثانوية العليا','Senior Secondary'],['10 – 12','10 – 12']]],note:['لكل صف مجموعة أسئلة خاصة به. المحتوى: المنهج المدرسي العام، والمنهج السنغافوري مرجعًا.','Each grade has its own question set. Content: general school syllabus, Singapore curriculum as reference.']},
+ dates:[{d:'2027-03-13',t:'reg'},{d:'2027-03-20',t:'test',l:['الجولة الأولى (Heat)','Heat round']},{d:'2027-06-26',t:'final',l:['النهائيات العالمية – سنغافورة (قابلة للتغيير)','Global Finals – Singapore (may change)']}],
+ awards:MEDALS_PCT,prizes:TOP3,prep:PREP_CB,register:CB,forum:FORUM,docs:[{f:['docs/hkiso-ar.pdf','docs/hkiso-en.pdf'],n:['دليل المسابقة','Competition guide']}]},
+
+{id:'simso',subj:'sci',logo:'img/lg-simso.png',art:'img/art-simso.webp',
+ name:['أولمبياد سيام الدولي للعلوم (SIMSO)','SIMSO Science – Siam International Olympiad'],org:['Contest Bag · SIMSO','Contest Bag · SIMSO'],
+ short:['منافسة علمية ودية بمشاركة دول من آسيا وأوروبا وأفريقيا والأمريكتين.','A friendly science competition with countries across four continents.'],
+ about:[['مسابقة دولية في العلوم للصفوف من 3 إلى 12، تهدف إلى تعزيز التميز والإتقان في العلوم عبر منافسات عالمية ودية، بمشاركة دول من آسيا وأوروبا وأفريقيا والأمريكتين.','An international science competition for Grades 3–12 that promotes excellence through friendly global competition, with partner countries across Asia, Europe, Africa and the Americas.']],
+ gmin:3,gmax:12,gradeLbl:['3 – 12','3 – 12'],
+ facts:[[['الأسئلة','Questions'],['30 سؤال اختيار من متعدد','30 multiple choice']],[['المدة','Duration'],['75 دقيقة','75 minutes']],[['الدرجات','Scoring'],['5 درجات لكل إجابة صحيحة','5 points per correct answer']],[['اللغة','Language'],['الإنجليزية','English']],[['الجولة الوطنية','National round'],ONLINE],[['وقت الاختبار','Test time'],['11:00 صباحًا','11:00 AM']],[['الرسوم','Fee'],['245 ريالًا','SAR 245']]],
+ mode:['عن بُعد بمراقبة','Online, proctored'],fee:245,
+ cats:{head:[['المستوى','Level'],['الصفوف','Grades']],rows:[[['الابتدائي المتوسط والعليا','Middle and Upper Primary'],['3 – 6','3 – 6']],[['المرحلة الثانوية','Secondary'],['7 – 10','7 – 10']],[['الثانوية العليا','Senior Secondary'],['11 – 12','11 – 12']]],note:['لكل صف مجموعة أسئلة خاصة به. المحتوى: المنهج المدرسي العام.','Each grade has its own question set. Content: general school syllabus.']},
+ dates:[{d:'2027-04-17',t:'reg'},{d:'2027-04-24',t:'test',l:['الجولة الوطنية','National round']},{d:'2027-08-01',t:'final',monthOnly:true,l:['النهائيات العالمية – تايلاند (قابلة للتغيير)','Global Finals – Thailand (may change)']}],
+ awards:[[['الميدالية الذهبية','Gold medal'],['أعلى 8%','Top 8%']],[['الميدالية الفضية','Silver medal'],['الـ 12% التالية','Next 12%']],[['الميدالية البرونزية','Bronze medal'],['الـ 20% التالية','Next 20%']],[['ميدالية إنجاز','Achiever medal'],['بقية أعلى 60%','Rest of the top 60%']],[['شهادة تميّز','Merit certificate'],['النصف الأعلى من الـ 40% الباقية','Upper half of the remaining 40%']],[['شهادة مشاركة','Participation certificate'],['النصف الأدنى من الـ 40% الباقية','Lower half of the remaining 40%']]],
+ prizes:TOP3,prep:PREP_CB,register:CB,forum:FORUM,docs:[{f:['docs/simso-ar.pdf','docs/simso-en.pdf'],n:['دليل المسابقة','Competition guide']}]},
+
+{id:'stemco-sci',subj:'sci',logo:'img/lg-stemco-sci.png',art:'img/art-stemco-sci.webp',
+ name:['ستيمكو للعلوم','STEMCO Science'],org:['Contest Bag · STEMCO','Contest Bag · STEMCO'],
+ short:['علوم للصفوف 3 – 8، وكيمياء أو فيزياء أو أحياء للصفوف 9 – 12، بالعربية والإنجليزية.','Science for Grades 3–8; chemistry, physics or biology for Grades 9–12. Arabic and English.'],
+ about:[['مسابقة دولية في العلوم بأسئلة حديثة ومبتكرة متوافقة مع منهجية STEM، تنمّي حل المشكلات والتفكير المنطقي والناقد.','An international science competition with modern, innovative STEM-aligned questions that build problem solving and logical and critical thinking.'],['يحصل المتميزون على ميداليات ذهبية وفضية وبرونزية، ويتأهل الأعلى أداءً إلى النهائيات العالمية.','Top participants earn gold, silver and bronze medals, and the best qualify for the Global Finals.']],
+ gmin:3,gmax:12,gradeLbl:['3 – 12','3 – 12'],
+ facts:[[['المحتوى','Content'],['المنهج المدرسي العام، والمنهج السنغافوري مرجعًا','General school syllabus, Singapore curriculum as reference']],[['اللغة','Language'],['العربية والإنجليزية','Arabic and English']],[['الجولة الوطنية','National round'],ONLINE],[['وقت الاختبار','Test time'],['11:00 صباحًا','11:00 AM']],[['الجولة العالمية','Global round'],['جامعة سنغافورة الوطنية (NUS)','NUS University, Singapore']],[['الرسوم','Fee'],['245 ريالًا','SAR 245']]],
+ mode:['عن بُعد بمراقبة','Online, proctored'],fee:245,
+ cats:{head:[['الفئة','Category'],['الصفوف','Grades'],['المادة','Subject'],['الأسئلة','Questions'],['المدة','Duration']],rows:[
+  [['الابتدائي المتوسط','Primary Middle'],['3 – 4','3 – 4'],['العلوم','Science'],['20','20'],['60 دقيقة','60 min']],
+  [['الابتدائي العليا','Primary Senior'],['5 – 6','5 – 6'],['العلوم','Science'],['30','30'],['90 دقيقة','90 min']],
+  [['المتوسط الأولى','Secondary Junior'],['7 – 8','7 – 8'],['العلوم','Science'],['30','30'],['90 دقيقة','90 min']],
+  [['الثانوي الأولى','Secondary Middle'],['9 – 10','9 – 10'],['الكيمياء أو الفيزياء أو الأحياء','Chemistry, Physics or Biology'],['40','40'],['120 دقيقة','120 min']],
+  [['الثانوي العليا','Secondary Senior'],['11 – 12','11 – 12'],['الكيمياء أو الفيزياء أو الأحياء','Chemistry, Physics or Biology'],['40','40'],['120 دقيقة','120 min']]],note:['جميع الأسئلة اختيار من متعدد.','All questions are multiple choice.']},
+ dates:[{d:'2026-12-05',t:'reg'},{d:'2026-12-12',t:'test',l:['الجولة الوطنية','National round']},{d:'2027-03-20',t:'final',l:['الجولة العالمية – سنغافورة (قابلة للتغيير)','Global Round – Singapore (may change)']}],
+ awards:MEDALS_80,prizes:TOP3,prep:PREP_CB,register:CB,forum:FORUM,docs:[{f:['docs/stemco-sci-ar.pdf','docs/stemco-sci-en.pdf'],n:['دليل المسابقة','Competition guide']}]},
+
+{id:'hkico',subj:'code',logo:'img/lg-hkico.png',art:'img/art-hkico.webp',
+ name:['أولمبياد هونغ كونغ الدولي للبرمجة (HKICO)','Hong Kong International Computational Olympiad (HKICO)'],org:['Contest Bag · HKICO','Contest Bag · HKICO'],
+ short:['Scratch وBlockly وPython حسب الصف، مع مشروع برمجي اختياري.','Scratch, Blockly or Python by grade, plus an optional programming project.'],
+ about:[['مسابقة برمجة دولية سنوية بلغات Scratch وBlockly وPython، تعزّز التفكير الحاسوبي عبر حل المشكلات وتصميم الخوارزميات والتجزئة والتعرف على الأنماط والتجريد.','An annual international programming competition in Scratch, Blockly and Python that builds computational thinking through problem solving, algorithm design, decomposition, pattern recognition and abstraction.'],['تتضمن مشروعًا برمجيًا اختياريًا يعرض فيه المشارك معرفته في فيديو مدته 5 دقائق. ويُدعى الحاصلون على الميداليات إلى سنغافورة لبرامج تعليمية في STEM وتبادل أكاديمي.','There is an optional programming project presented in a 5-minute video. Medallists are invited to Singapore for STEM education programs and academic exchange.']],
+ gmin:3,gmax:12,gradeLbl:['3 – 12','3 – 12'],
+ facts:[[['الأسئلة','Questions'],['20 سؤال اختيار من متعدد','20 multiple choice']],[['المدة','Duration'],['60 دقيقة','60 minutes']],[['الدرجات','Scoring'],['+2 للصحيحة، 0 للمتروكة، −1 للخاطئة','+2 correct, 0 blank, −1 wrong']],[['اللغة','Language'],['الإنجليزية','English']],[['الجولة الأولى','Heat round'],ONLINE],[['وقت الاختبار','Test time'],['11:00 صباحًا','11:00 AM']],[['الرسوم','Fee'],['245 ريالًا','SAR 245']]],
+ mode:['عن بُعد بمراقبة','Online, proctored'],fee:245,
+ cats:{head:[['الصفوف','Grades'],['لغة البرمجة','Language']],rows:[[['3 – 4','3 – 4'],['Scratch','Scratch']],[['5 – 7','5 – 7'],['Blockly','Blockly']],[['8 – 12','8 – 12'],['Python','Python']]],note:['المحتوى: المعرفة البرمجية العامة.','Content: general programming knowledge.']},
+ dates:[{d:'2027-03-20',t:'reg'},{d:'2027-03-27',t:'test',l:['الجولة الأولى (Heat)','Heat round']},{d:'2027-06-26',t:'final',l:['النهائيات العالمية – سنغافورة (قابلة للتغيير)','Global Finals – Singapore (may change)']}],
+ awards:MEDALS_PCT,prizes:TOP3,prep:PREP_CB,register:CB,forum:FORUM,docs:[{f:['docs/hkico-ar.pdf','docs/hkico-en.pdf'],n:['دليل المسابقة','Competition guide']}]},
+
+{id:'ptl',subj:'code',logo:null,logoTxt:'SAVVY',art:'img/art-ptl.webp',
+ name:['التعلّم عبر اللعب – سافي','Learning Through Play – Savvy'],org:['مجموعة سافي للألعاب الإلكترونية · وزارة التعليم · الراعي الرئيسي: روبلوكس','Savvy Games Group · Ministry of Education · Main sponsor: Roblox'],
+ short:['ابتكر مع فريقك فكرة لعبة تعليمية للهاتف الجوال، ولا يُشترط برمجة لعبة كاملة.','Create an educational mobile game idea with your team. No full game programming required.'],
+ about:[['مبادرة وطنية بالشراكة بين وزارة التعليم ومجموعة سافي للألعاب الإلكترونية لتشجيع الطلاب على التفاعل مع التعليم من خلال اللعب. تقدّم فرق من طالبين إلى خمسة طلاب مفهومًا للعبة فيديو تعليمية، وسيُطوَّر المفهوم الفائز ويُنشر على منصّتي «مدرستي» و«روبلوكس».','A national initiative by the Ministry of Education and Savvy Games Group that encourages students to engage with learning through play. Teams of two to five students present an educational video game concept; the winning concept will be developed and published on Madrasati and Roblox.'],['المطلوب فكرة لعبة تعليمية موثّقة وليس برمجة لعبة كاملة: وثيقة تصميم مبسّطة وفق القالب الرسمي تتضمن الفكرة، والهدف التعليمي، والقواعد، والشخصيات، وآليات اللعب. ويمكن الاستعانة بأدوات الذكاء الاصطناعي دعمًا إبداعيًا بشرط أن يبقى الطلاب مسيطرين على العملية الإبداعية.','What is required is a documented educational game idea, not a fully programmed game: a simple design document on the official template covering the idea, educational goal, rules, characters and gameplay mechanics. AI tools may support creativity as long as students stay in control of the creative process.']],
+ gmin:7,gmax:12,gradeLbl:['الأعمار 10 – 18 عامًا في المرحلتين المتوسطة والثانوية','Ages 10 – 18, intermediate and secondary'],
+ regLbl:['آخر موعد للتسليم','Submission deadline'],testLbl:['مرحلة المدرسة','School stage'],
+ facts:[[['الفريق','Team'],['من 2 إلى 5 طلاب','2 to 5 students']],[['العمر','Age'],['من 10 إلى 18 عامًا','10 to 18 years']],[['المطلوب','What to submit'],['وثيقة تصميم فكرة لعبة تعليمية','A design document for an educational game idea']],[['البرمجة','Programming'],['لا يُشترط برمجة لعبة كاملة','No full game programming required']],[['موافقة ولي الأمر','Parent approval'],['مطلوبة لكل مشارك دون 18 عامًا','Required for every participant under 18']],[['التسليم','Submit to'],['لجنة التحكيم في المدرسة','The school judging committee']]],
+ mode:['فرق · وثيقة تصميم','Teams · design document'],
+ cats:{head:[['المرحلة','Stage'],['الفترة','Period'],['ما يحدث','What happens'],['عدد الفرق','Teams']],rows:[
+  [['الفصل الدراسي','Classroom'],['1 أكتوبر 2026 – 28 يناير 2027','1 Oct 2026 – 28 Jan 2027'],['الفرق تصمم مفهومها الخاص','Teams design their concept'],['غير محدود','Unlimited']],
+  [['المدرسة','School'],['29 يناير – 4 فبراير 2027','29 Jan – 4 Feb 2027'],['لجنة التحكيم المدرسية تختار أفضل مفهوم','The school committee picks the best concept'],['1 لكل مدرسة','1 per school']],
+  [['الإدارة التعليمية','Education directorate'],['حتى 25 فبراير 2027','Until 25 Feb 2027'],['اختيار أفضل المفاهيم في المناطق الست عشرة','Best concepts chosen across the 16 regions'],['102','102']],
+  [['الوطني','National'],['26 فبراير – 13 مارس 2027','26 Feb – 13 Mar 2027'],['سافي وشركاؤها يختارون أفضل 10 مفاهيم','Savvy and partners pick the top 10 concepts'],['10','10']],
+  [['الفائز','Winner'],['15 أبريل 2027','15 Apr 2027'],['اختيار المفهوم الفائز لهذا العام','This year’s winning concept is chosen'],['1','1']]],
+  note:['أكاديمية روبلوكس للطلاب (مايو – يوليو 2027): تدريب مجاني لأفضل 10 فرق لتحويل أفكارهم إلى نماذج قابلة للعب باستخدام روبلوكس ستوديو.','Roblox Academy for students (May – July 2027): free training for the top 10 teams to turn their ideas into playable prototypes with Roblox Studio.']},
+ dates:[{d:'2026-10-01',t:'info',l:['بدء مرحلة إعداد الأفكار','Idea development phase begins']},{d:'2027-01-28',t:'reg',l:['آخر موعد لتسليم المشاركات','Final deadline for submissions']},{d:'2027-01-29',d2:'2027-02-04',t:'test',l:['مرحلة المدرسة: اختيار أفضل مفهوم','School stage: best concept chosen']},{d:'2027-02-26',d2:'2027-03-13',t:'final',l:['المرحلة الوطنية: اختيار أفضل 10 فرق','National stage: top 10 teams chosen']},{d:'2027-04-15',t:'final',l:['إعلان الفريق الفائز','Winning team announced']}],
+ prizes:[['كل مشارك: تقدير رسمي، وموارد حصرية، وشهادات، ومكافآت خاصة.','Every participant: official recognition, exclusive resources, certificates and special rewards.'],['أفضل 10 فرق: مزايا ومكافآت استثنائية، منها التفاعل مع خبراء ومتخصصين.','Top 10 teams: exceptional benefits and rewards, including time with experts and specialists.'],['الفرق الفائزة بالمراكز الأولى: ميداليات ذهبية وفضية وبرونزية، وجوائز مميزة، وعملة افتراضية، وإرشاد متخصص.','Top winning teams: gold, silver and bronze medals, special prizes, virtual currency and specialist mentoring.'],['الفريق الفائز وطنيًا: تطوير لعبته على يد استوديو محترف وإتاحتها للاعبين في جميع أنحاء المملكة.','National winning team: its game is developed by a professional studio and made available to players across the Kingdom.'],['تغطي سافي تكاليف الرحلات فقط لطالبين ومرافقَين بالغَين من كل فريق من الفرق العشرة المتأهلة للنهائي، ولا تشمل السكن والوجبات.','Savvy covers travel only for two students and two adult chaperones from each of the ten finalist teams, not accommodation or meals.']],
+ prep:[['كوّن فريقك واحصل على موافقة ولي الأمر.','Form your team and get parent/guardian approval.'],['اختر فكرة لعبة ذات هدف تعليمي واضح.','Choose a game idea with a clear educational goal.'],['وثّق فكرتك بالقالب الرسمي: الهدف، والقواعد، والشخصيات، وآليات اللعب.','Document your idea on the official template: goal, rules, characters and gameplay.'],['قدّم ملفك إلى لجنة التحكيم في المدرسة قبل الخميس 28 يناير 2027.','Submit your file to the school judging committee by Thursday, 28 January 2027.']],
+ links:[{u:'https://savvyacademy.sa/wp-content/uploads/2026/10/Competition-Brief.mp4',n:['الفيديو التعريفي بالمسابقة','Competition brief video']},{u:'https://savvyacademy.sa/wp-content/uploads/2026/10/%D9%88%D8%AB%D9%8A%D9%82%D8%A9-%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D8%A7%D9%84%D9%84%D8%B9%D8%A8%D8%A9.pptx',n:['قالب وثيقة تصميم اللعبة (PowerPoint)','Game design document template (PowerPoint)']},{u:'https://savvyacademy.sa/wp-content/uploads/2026/09/Play-To-Learn-Evaluation-Grid-AR.html',n:['نموذج التقييم','Evaluation grid']}],
+ register:null,schoolReg:['المشاركة عبر المدرسة: قدّموا ملف الفريق إلى لجنة التحكيم في المدرسة قبل الخميس 28 يناير 2027.','Entry is through the school: submit your team’s file to the school judging committee by Thursday, 28 January 2027.'],
+ docs:[{f:['docs/ptl-handbook-ar.pdf','docs/ptl-handbook-ar.pdf'],n:['دليل المدرسة الرسمي','Official school handbook'],d:['بالعربية','Arabic']},{f:['docs/ptl-school-poster.pdf','docs/ptl-school-poster.pdf'],n:['إعلان المدرسة','School announcement'],d:['بالعربية والإنجليزية','Arabic and English']}]},
+
+{id:'bebras',subj:'code',logo:'img/mawhiba-h.png',art:'img/art-bebras.webp',
+ name:['بيبراس موهبة للمعلوماتية','Bebras Mawhiba Informatics'],org:['وزارة التعليم · موهبة','Ministry of Education · Mawhiba'],
+ short:['رحلتك في التفكير الحاسوبي تبدأ من هنا، مع تدريبات عن بُعد من المدرسة.','Your journey in computational thinking starts here, with remote training from the school.'],
+ about:[['مسابقة ممتعة تنمّي التفكير المنطقي وحل المشكلات والمهارات الحاسوبية لدى الطلبة.','A fun competition that builds logical thinking, problem solving and computing skills.'],['توفّر المدرسة تدريبات خاصة عن بُعد للمسابقة.','The school offers dedicated remote training for the competition.']],
+ gmin:null,gmax:null,gradeLbl:['حسب إعلان المدرسة','See school announcement'],school:true,
+ facts:[[['الاختبار الرسمي','Official test'],['عن بُعد','Online']],[['التدريب','Training'],['تدريبات خاصة من المدرسة عن بُعد','Dedicated remote training from the school']],[['التسجيل','Registration'],['عبر بوابة بيبراس (زر «سجّل الآن»)','On the Bebras portal (“Register now”)']]],
+ mode:['عن بُعد','Online'],
+ dates:[{d:'2026-10-06',t:'info',l:['فتح التسجيل وإطلاق الاختبار التجريبي','Registration opens; practice test launches']},{d:'2026-11-22',t:'reg'},{d:'2026-11-29',t:'info',l:['إغلاق الاختبار التجريبي واكتمال الجاهزية','Practice test closes; readiness complete']},{d:'2026-12-05',t:'test',l:['الاختبار الرسمي عن بُعد','Official test, online']},{d:'2027-01-05',t:'final',l:['إعلان النتائج','Results announced']}],
+ prep:[['تدريبات المدرسة الخاصة بالمسابقة عن بُعد.','The school’s remote training for the competition.'],['الاختبار التجريبي متاح حتى 29 نوفمبر 2026.','The practice test is open until 29 November 2026.']],
+ register:'https://app-prd-bebrasportal-uaenorth-hrh0fefrf8cdbxcs.uaenorth-01.azurewebsites.net/',schoolReg:['للتفاصيل وآلية التسجيل، يرجى متابعة قنوات المدرسة الرسمية.','For registration details and process, please follow the school’s official channels.'],docs:[{f:['docs/bebras-school-ar.pdf','docs/bebras-school-en.pdf'],n:['إعلان المدرسة','School announcement']}]},
+
+{id:'kmc',subj:'math',logo:null,logoTxt:'KMC',art:'img/art-kmc.webp',
+ name:['مسابقة كاوست للرياضيات (KMC)','KAUST Mathematics Competition (KMC)'],org:['جامعة الملك عبدالله للعلوم والتقنية (كاوست) · وزارة التعليم','KAUST · Ministry of Education'],
+ short:['التحدي يبدأ بمسألة… والتميّز يبدأ بك. اختبار تأهيلي حضوري ونهائي في كاوست.','The challenge starts with a problem… excellence starts with you. In-person qualifier, final at KAUST.'],
+ about:[['مسابقة وطنية في الرياضيات تنظمها جامعة الملك عبدالله للعلوم والتقنية (كاوست) للطلاب والطالبات من الصف السادس الابتدائي إلى الصف الثاني الثانوي، من السعوديين والمقيمين في مدارس المملكة، لتنمية مهارات التفكير العليا وحب الرياضيات.','A national mathematics competition organized by KAUST for students from Grade 6 to Grade 11 (6th primary to 2nd secondary), Saudi and resident, at schools in the Kingdom, to build higher-order thinking and a love of mathematics.'],['المرحلة الأولى حضورية في مراكز اختبار بإدارات التعليم، والمرحلة النهائية في كاوست لمدة 3 أيام لأفضل المتأهلين.','Stage 1 is in person at education-directorate test centres; the 3-day final at KAUST is for the top qualifiers.']],
+ gmin:6,gmax:11,gradeLbl:['6 – 11 (من مدرستنا: 6 – 9)','6 – 11 (our school: 6 – 9)'],
+ facts:[[['المرحلة الأولى','Stage 1'],['حضوريًا، اختيار من متعدد','In person, multiple choice']],[['المرحلة النهائية','Final'],['6 – 8 أسئلة كتابية في كاوست','6 – 8 written questions at KAUST']],[['اللغة','Language'],['العربية والإنجليزية','Arabic and English']],[['الرسوم','Fee'],['100 ريال غير شاملة ضريبة القيمة المضافة، وغير مستردة','SAR 100 excluding VAT, non-refundable']],[['تكاليف النهائي','Final-round costs'],['مغطاة بالكامل للمتأهلين','Fully covered for finalists']]],
+ mode:['حضوري','In person'],fee:100,
+ cats:{head:[['المسار','Track'],['الصفوف','Grades'],['أسئلة المرحلة الأولى','Stage 1 questions']],rows:[[['المسار الأول','Track 1'],['السادس الابتدائي والأول المتوسط (6 – 7)','Grades 6 – 7'],['24','24']],[['المسار الثاني','Track 2'],['الثاني والثالث المتوسط (8 – 9)','Grades 8 – 9'],['24','24']],[['المسار الثالث','Track 3'],['الأول والثاني الثانوي (10 – 11)','Grades 10 – 11'],['30','30']]],note:['التسجيل لا يكون فعّالًا إلا بعد سداد الرسوم.','Registration is active only after the fee is paid.']},
+ dates:[{d:'2026-10-06',t:'info',l:['فتح التقديم','Applications open']},{d:'2026-12-12',t:'reg'},{d:'2027-01-23',t:'test',l:['الاختبار التأهيلي حضوريًا (أكثر من 50 مركز اختبار)','Qualifying test in person (50+ test centres)']},{d:'2027-04-02',d2:'2027-04-04',t:'final',l:['الجولة النهائية في كاوست','Final round at KAUST']}],
+ prizes:[['جوائز خاصة للفائزين في المسار الأول.','Special prizes for Track 1 winners.'],['مشاركة مجانية في البرامج الأكاديمية لأكاديمية كاوست.','Free participation in KAUST Academy programs.'],['الأول في المسارين الثاني والثالث: معسكر تدريب صيفي في جامعة كامبريدج بالمملكة المتحدة.','Top student in Tracks 2 and 3: a summer training camp at the University of Cambridge, UK.'],['تكاليف المرحلة النهائية مغطاة: السكن في كاوست، والإعاشة، وتذاكر الطيران الداخلية، والمواصلات.','Final-round costs covered: accommodation at KAUST, meals, domestic flights and transport.']],
+ prep:[['نماذج أسئلة تجريبية متاحة في صفحة المسابقة بأكاديمية كاوست.','Sample practice questions are on the KAUST Academy competition page.']],
+ register:KMC_URL,docs:[{f:['docs/kmc-ar.pdf','docs/kmc-en.pdf'],n:['الأسئلة الشائعة','Frequently asked questions'],d:['الملف الرسمي بالعربية، وترجمة المدرسة بالإنجليزية','Official Arabic file; school translation in English']},{f:['docs/kmc-poster-ar.pdf','docs/kmc-poster-en.pdf'],n:['إعلان المدرسة','School announcement'],d:['الإعلان مع الأسئلة الشائعة، والأزرار قابلة للضغط','Poster with the FAQ; buttons are clickable']}]}
+];
+
+/* ---------- helpers ---------- */
+let lang='ar';
+try{const s=localStorage.getItem('rsmc-lang');if(s==='en'||s==='ar')lang=s}catch(e){}
+const T=v=>Array.isArray(v)?(v[lang==='ar'?0:1]):v;
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const MON=[['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'],['January','February','March','April','May','June','July','August','September','October','November','December']];
+const MONS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const WD=[['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']];
+const P=iso=>{const [y,m,d]=iso.split('-').map(Number);return {y,m,d,wd:new Date(Date.UTC(y,m-1,d)).getUTCDay()}};
+const L=()=>lang==='ar'?0:1;
+function fmt(iso,o={}){const p=P(iso);if(o.month)return MON[L()][p.m-1]+' '+p.y;let s=(o.wd?WD[L()][p.wd]+(lang==='ar'?' ':', '):'')+p.d+' '+MON[L()][p.m-1];if(!o.noYear)s+=' '+p.y;return s}
+function fmtRange(a,b){const p=P(a),q=P(b);if(p.m===q.m&&p.y===q.y)return p.d+' – '+q.d+' '+MON[L()][p.m-1]+' '+p.y;return fmt(a,{noYear:true})+' – '+fmt(b)}
+/* deadlines end 23:59 Riyadh time (UTC+3) */
+const endOf=iso=>{const p=P(iso);return Date.UTC(p.y,p.m-1,p.d,20,59,59)};
+const startOf=iso=>{const p=P(iso);return Date.UTC(p.y,p.m-1,p.d,-3,0,0)};
+const now=()=>Date.now();
+function daysLeft(iso){const ms=endOf(iso)-now();if(ms<0)return -1;const r=new Date(now()+3*3600e3);const t=Date.UTC(r.getUTCFullYear(),r.getUTCMonth(),r.getUTCDate());const p=P(iso);return Math.round((Date.UTC(p.y,p.m-1,p.d)-t)/864e5)}
+function regDates(c){if(c.sessions)return c.sessions.map(s=>s[1]);return (c.dates||[]).filter(d=>d.t==='reg').map(d=>d.d)}
+function nextReg(c){const r=regDates(c).filter(d=>endOf(d)>=now()).sort();return r[0]||null}
+function nextTest(c){if(c.sessions){const s=c.sessions.find(s=>endOf(s[1])>=now());return s?s[0]:c.sessions[c.sessions.length-1][0]}const t=(c.dates||[]).find(d=>d.t==='test');return t?t.d:null}
+function status(c){const n=nextReg(c);if(!n)return {k:'closed'};const dl=daysLeft(n);return {k:dl<=14?'soon':'open',d:n,dl}}
+function badge(c){const s=status(c);if(s.k==='closed')return `<span class="badge b-closed">${T(UI.closed)}</span>`;if(s.dl===0)return `<span class="badge b-soon">${T(UI.today)}</span>`;return `<span class="badge ${s.k==='soon'?'b-soon':'b-open'}">${UI.daysLeft[L()](s.dl)}</span>`}
+const ICON={
+ users:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14.2c2.4.2 4 1.8 4.5 4.3"/></svg>',
+ cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+ clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+ monitor:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg>',
+ arrow:'<svg class="flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+ info:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>',
+ list:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>',
+ trophy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg>',
+ book:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z"/><path d="M4 19a2 2 0 0 1 2-2h13"/></svg>',
+ file:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg>',
+ x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+ ext:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>'
+};
+const logoHtml=(c,cls)=>c.logo?`<img src="${c.logo}" alt="${esc(T(c.name))}">`:`<span class="txt">${esc(c.logoTxt||'')}</span>`;
+
+/* ---------- state ---------- */
+let fSubj='all',fGrade='all',fOpen=false,fQ='';
+try{const g=localStorage.getItem('rsmc-grade');if(g)fGrade=g}catch(e){}
+
+function applyStatic(){
+  document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+  document.body.classList.toggle('en',lang==='en');
+  document.title=lang==='ar'?'بوابة مسابقات RSMC':'RSMC Competitions Hub';
+  document.querySelectorAll('[data-i]').forEach(el=>{const v=UI[el.dataset.i];if(v)el.textContent=T(v)});
+  document.querySelectorAll('[data-ph]').forEach(el=>el.placeholder=T(UI[el.dataset.ph]));
+  document.querySelectorAll('[data-alt-ar]').forEach(el=>el.alt=lang==='ar'?el.dataset.altAr:el.dataset.altEn);
+  $('#langLbl').textContent=lang==='ar'?'English':'العربية';
+  $('#langBtn').setAttribute('aria-label',lang==='ar'?'Switch to English':'التبديل إلى العربية');
+}
+
+function renderFilters(){
+  const subs=['all','en','math','sci','code'];
+  $('#chips').innerHTML=subs.map(s=>{const n=s==='all'?C.length:C.filter(c=>c.subj===s).length;const lbl=s==='all'?T(UI.all):T(UI.subj[s]);return `<button type="button" class="chip" data-s="${s}" aria-pressed="${fSubj===s}">${esc(lbl)}<span class="c">${n}</span></button>`}).join('');
+  const g=$('#grade');let o=`<option value="all">${T(UI.allGrades)}</option>`;for(let i=1;i<=9;i++)o+=`<option value="${i}">${T(UI.gradeN)}${i}</option>`;g.innerHTML=o;g.value=fGrade;
+  $('#openOnly').checked=fOpen;
+}
+function matches(c){
+  if(fSubj!=='all'&&c.subj!==fSubj)return false;
+  if(fGrade!=='all'){const g=+fGrade;if(c.gmin!=null&&(g<c.gmin||g>c.gmax))return false;}
+  if(fOpen&&status(c).k==='closed')return false;
+  if(fQ){const q=fQ.toLowerCase();if(!(c.name[0]+' '+c.name[1]+' '+c.org[1]).toLowerCase().includes(q))return false}
+  return true;
+}
+function sortKey(c){const n=nextReg(c);return n?endOf(n):9e15}
+function renderGrid(){
+  const list=C.filter(matches).sort((a,b)=>sortKey(a)-sortKey(b));
+  if(!list.length){$('#grid').innerHTML=`<div class="empty">${T(UI.empty)}</div>`;return}
+  $('#grid').innerHTML=list.map(c=>{
+    const nr=nextReg(c),nt=nextTest(c);
+    const g=c.gmin!=null&&!c.birth?`${c.gmin} – ${c.gmax}`:T(c.gradeLbl);
+    return `<button type="button" class="card" data-s="${c.subj}" data-id="${c.id}" aria-label="${esc(T(c.name))}">
+      <div class="card-top"><img class="art" src="${c.art}" alt="" aria-hidden="true"><div class="logo">${logoHtml(c)}</div><span class="subj s-${c.subj}">${esc(T(UI.subj[c.subj]))}</span></div>
+      <div class="card-body">
+        <h3>${esc(T(c.name))}</h3><p>${esc(T(c.short))}</p>
+        <div class="meta">
+          <div class="mrow">${ICON.users}<span class="k">${T(UI.grades)}</span><span class="v">${esc(g)}</span></div>
+          <div class="mrow">${ICON.cal}<span class="k">${T(c.regLbl||UI.regClose)}</span><span class="v">${nr?esc(fmt(nr)):esc(T(UI.closed))}</span></div>
+          <div class="mrow">${ICON.clock}<span class="k">${T(c.testLbl||UI.testDay)}</span><span class="v">${nt?esc(fmt(nt)):'–'}${c.sessions?' · <span class="badge b-multi">'+T(UI.multi)+'</span>':''}</span></div>
+          <div class="mrow">${ICON.monitor}<span class="k">${T(UI.mode)}</span><span class="v">${esc(T(c.mode))}</span></div>
+        </div>
+        <div class="card-foot">${badge(c)}<span class="more">${T(UI.details)}${ICON.arrow}</span></div>
+      </div></button>`}).join('');
+}
+
+/* spotlight + countdown */
+let spotTimer=null;
+function renderSpot(){
+  const open=C.map(c=>({c,n:nextReg(c)})).filter(x=>x.n).sort((a,b)=>endOf(a.n)-endOf(b.n));
+  $('#stOpen').textContent=open.length;$('#stTotal').textContent=C.length;
+  if(!open.length){$('#spot').innerHTML='';return}
+  const {c,n}=open[0];
+  $('#spot').innerHTML=`<div class="spot-card"><div class="spot-logo">${logoHtml(c)}</div><div><div class="spot-k">${T(UI.spotK)}</div><div class="spot-t">${esc(T(c.name))}</div><div class="spot-d">${T(c.regLbl||UI.regClose)}: ${esc(fmt(n,{wd:true}))}</div></div>
+   <div class="count" aria-live="off"><div><b id="cd-d">0</b><span>${T(UI.days)}</span></div><div><b id="cd-h">0</b><span>${T(UI.hours)}</span></div><div><b id="cd-m">0</b><span>${T(UI.mins)}</span></div><div><b id="cd-s">0</b><span>${T(UI.secs)}</span></div></div>
+   <button type="button" class="btn spot-btn" data-id="${c.id}">${T(UI.openDetails)}${ICON.arrow}</button></div>`;
+  const end=endOf(n);
+  const tick=()=>{let ms=Math.max(0,end-now());const d=Math.floor(ms/864e5);ms-=d*864e5;const h=Math.floor(ms/36e5);ms-=h*36e5;const m=Math.floor(ms/6e4);ms-=m*6e4;const s=Math.floor(ms/1e3);
+    const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=String(v).padStart(id==='cd-d'?1:2,'0')};set('cd-d',d);set('cd-h',h);set('cd-m',m);set('cd-s',s)};
+  tick();clearInterval(spotTimer);spotTimer=setInterval(tick,1000);
+}
+
+/* calendar */
+function calEvents(){
+  const ev=[];
+  C.forEach(c=>{
+    if(c.sessions){c.sessions.forEach(s=>{ev.push({c,d:s[1],t:'reg'});ev.push({c,d:s[0],t:'test',l:UI.test})});(c.extra||[]).forEach(x=>ev.push({c,d:x.d,d2:x.d2,t:x.t,l:x.l}))}
+    (c.dates||[]).forEach(x=>{if(x.t==='info')return;ev.push({c,d:x.d,d2:x.d2,t:x.t,l:x.t==='reg'&&!c.regLbl?null:x.l,monthOnly:x.monthOnly})});
+  });
+  /* TeenEagle English & Math share sessions/rounds: merge into one row */
+  const key=e=>e.d+e.t+(e.l?e.l[1]:'')+(e.c.id.startsWith('te-')?'te':e.c.id);
+  const seen={};const out=[];ev.forEach(e=>{const k=key(e);if(seen[k]){seen[k].pair=true;return}seen[k]=e;out.push(e)});
+  return out.sort((a,b)=>a.d<b.d?-1:a.d>b.d?1:({reg:0,test:1,final:2}[a.t]-{reg:0,test:1,final:2}[b.t]));
+}
+function renderCal(){
+  const ev=calEvents();const by={};ev.forEach(e=>{const k=e.d.slice(0,7);(by[k]=by[k]||[]).push(e)});
+  $('#cal').innerHTML=Object.keys(by).sort().map(k=>{const [y,m]=k.split('-').map(Number);
+    return `<div class="month"><h3>${MON[L()][m-1]} <small>${y}</small></h3>${by[k].map(e=>{
+      const p=P(e.d);const past=endOf(e.d2||e.d)<now();
+      const name=e.pair?(lang==='ar'?'تين ايغل (الإنجليزية والرياضيات)':'TeenEagle (English & Math)'):T(e.c.name);
+      const lbl=e.l?T(e.l):(e.t==='reg'?T(UI.regClose):T(UI.testDay));
+      const dtxt=e.monthOnly?`<b>–</b><span>${lang==='ar'?MON[0][p.m-1]:MONS[p.m-1]}</span>`:`<b>${p.d}${e.d2?'–'+P(e.d2).d:''}</b><span>${lang==='ar'?MON[0][p.m-1]:MONS[p.m-1]}</span>`;
+      return `<button type="button" class="ev t-${e.t}${past?' past':''}" data-id="${e.c.id}"><div class="dbox">${dtxt}</div><div><div class="n">${esc(name)}</div><div class="l">${esc(lbl)}</div></div></button>`}).join('')}</div>`}).join('');
+}
+
+function renderSteps(){$('#stepsList').innerHTML=UI.stepsList.map((s,i)=>`<div class="step"><div class="no">${i+1}</div><h3>${esc(T(s[0]))}</h3><p>${esc(T(s[1]))}</p></div>`).join('')}
+function renderFaq(){$('#faqList').innerHTML=UI.faqList.map(f=>`<details><summary>${esc(T(f[0]))}</summary><p>${esc(T(f[1]))}</p></details>`).join('')}
+
+/* detail panel */
+let lastFocus=null,openId=null;
+function table(head,rows){return `<div class="tbl"><table><thead><tr>${head.map(h=>`<th>${esc(T(h))}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((v,i)=>`<td${i>0?' class="num"':''}>${esc(T(v))}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`}
+function openPanel(id,push){
+  const c=C.find(x=>x.id===id);if(!c)return;openId=id;lastFocus=document.activeElement;
+  const jumps=[['ov',UI.jOverview],['ct',UI.jCats],['dt',UI.jDates],['aw',UI.jAwards],['pr',UI.jPrep],['dc',UI.jDocs]];
+  const has={ov:1,ct:!!c.cats,dt:1,aw:!!(c.awards||c.prizes),pr:!!c.prep,dc:!!(c.docs&&c.docs.length)};
+  let datesHtml='';
+  if(c.sessions){
+    const nx=c.sessions.find(s=>endOf(s[1])>=now());
+    datesHtml+=`<h3>${ICON.cal}${T(UI.hSessions)}</h3><div class="sessions">${c.sessions.map(s=>{const past=endOf(s[1])<now();const isN=nx&&s===nx;return `<div class="sess${isN?' next':''}${past?' past':''}"><div class="tdate">${T(UI.test)}: ${esc(fmt(s[0],{wd:true}))}</div><div class="rdate">${T(UI.regBy)}${esc(fmt(s[1],{wd:true}))}</div>${isN?`<span class="badge b-open" style="margin-top:6px">${T(UI.nextBadge)}</span>`:''}</div>`}).join('')}</div>`;
+    datesHtml+=`<h3 style="margin-top:18px">${ICON.trophy}${lang==='ar'?'الجولات الإقليمية والعالمية':'Regional and global rounds'}</h3><div class="tl">${c.extra.map(x=>`<div class="row"><span class="d">${esc(fmtRange(x.d,x.d2))}</span><span>${esc(T(x.l))}</span><span class="badge ${endOf(x.d2)<now()?'b-closed':'b-multi'}">${endOf(x.d2)<now()?T(UI.past):T(UI.upcoming)}</span></div>`).join('')}</div><p style="margin-top:10px;font-size:14px">${lang==='ar'?'مواعيد الجولات العالمية قابلة للتغيير.':'Global round dates may change.'}</p>`;
+  }else{
+    datesHtml=`<h3>${ICON.cal}${T(UI.hDates)}</h3><div class="tl">${c.dates.map(x=>{const past=endOf(x.d2||x.d)<now();const lbl=x.l?T(x.l):T(UI.regClose);const ds=x.monthOnly?fmt(x.d,{month:true}):(x.d2?fmtRange(x.d,x.d2):fmt(x.d,{wd:true}));
+      let b='';if(x.t==='reg'){const dl=daysLeft(x.d);b=dl<0?`<span class="badge b-closed">${T(UI.closed)}</span>`:`<span class="badge ${dl<=14?'b-soon':'b-open'}">${dl===0?T(UI.today):UI.daysLeft[L()](dl)}</span>`}else b=`<span class="badge ${past?'b-closed':'b-multi'}">${past?T(UI.past):T(UI.upcoming)}</span>`;
+      return `<div class="row${past?' past':''}"><span class="d">${esc(ds)}</span><span>${esc(lbl)}</span>${b}</div>`}).join('')}</div>`;
+  }
+  const docs=(c.docs||[]).map((d,i)=>`<div class="doc"><div class="ic">PDF</div><div><div class="nm">${esc(T(d.n))}</div><div class="ds">${esc(d.d?T(d.d):(lang==='ar'?'باللغة العربية':'In English'))}</div></div><div class="acts"><button type="button" class="sbtn fill" data-view="${i}">${T(UI.view)}</button><a class="sbtn" href="${T(d.f)}" target="_blank" rel="noopener">${T(UI.openTab)}</a></div></div>`).join('');
+  const reg=c.register?`<a class="btn btn-primary" href="${c.register}" target="_blank" rel="noopener">${T(UI.register)}${ICON.ext}</a>`:'';
+  const guideBtn=c.docs&&c.docs.length?`<button type="button" class="btn btn-ghost" data-view="0">${ICON.file}${T(UI.guide)}</button>`:'';
+  const p=$('#panel');
+  p.innerHTML=`<div class="sheet" role="document" data-s="${c.subj}">
+    <div class="sh-head"><img class="art" src="${c.art}" alt="" aria-hidden="true">
+      <div class="sh-bar"><span class="sh-logo">${c.logo?`<img src="${c.logo}" alt="${esc(T(c.name))}">`:`<span class="en-face" style="font-weight:700;font-size:28px;color:#0e6368">${esc(c.logoTxt)}</span>`}</span><button type="button" class="x" id="pClose" aria-label="${T(UI.close)}">${ICON.x}</button></div>
+      <h2 id="pTitle">${esc(T(c.name))}</h2><div class="org">${T(UI.org)}: ${esc(T(c.org))} · <span class="subj s-${c.subj}" style="position:static;display:inline-block">${esc(T(UI.subj[c.subj]))}</span></div>
+      <div style="position:relative;margin-top:12px">${badge(c)}</div>
+    </div>
+    <nav class="jump" aria-label="sections">${jumps.filter(j=>has[j[0]]).map(j=>`<button type="button" data-jump="${j[0]}">${T(j[1])}</button>`).join('')}</nav>
+    <div class="sh-body">
+      <div class="box" id="j-ov"><h3>${ICON.info}${T(UI.hOverview)}</h3>${c.about.map(a=>`<p>${esc(T(a))}</p>`).join('')}
+        ${c.schoolReg?`<div class="note">${esc(T(c.schoolReg))}</div>`:''}
+        <h3 style="margin-top:16px">${ICON.list}${T(UI.hFacts)}</h3><div class="facts"><div class="fact"><div class="k">${T(UI.grades)}</div><div class="v">${esc(T(c.gradeLbl))}</div></div>${c.facts.map(f=>`<div class="fact"><div class="k">${esc(T(f[0]))}</div><div class="v">${esc(T(f[1]))}</div></div>`).join('')}</div></div>
+      ${c.cats?`<div class="box" id="j-ct"><h3>${ICON.users}${T(UI.hCats)}</h3>${table(c.cats.head,c.cats.rows)}${c.cats.note?`<p style="margin-top:10px">${esc(T(c.cats.note))}</p>`:''}</div>`:''}
+      <div class="box" id="j-dt">${datesHtml}</div>
+      ${(c.awards||c.prizes)?`<div class="box" id="j-aw"><h3>${ICON.trophy}${T(UI.hAwards)}</h3>${c.awards?table([[lang==='ar'?'الجائزة':'Award','Award'],[lang==='ar'?'الدرجة':'Score','Score']].map(h=>[h[0],h[0]]),c.awards):''}${c.awardsNote?`<p style="margin-top:10px">${esc(T(c.awardsNote))}</p>`:''}${c.prizes?`<ul class="list" style="margin-top:12px">${c.prizes.map(x=>`<li>${esc(T(x))}</li>`).join('')}</ul>`:''}</div>`:''}
+      ${c.prep?`<div class="box" id="j-pr"><h3>${ICON.book}${T(UI.hPrep)}</h3><ul class="list">${c.prep.map(x=>`<li>${esc(T(x))}</li>`).join('')}</ul>${c.links?`<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px">${c.links.map(k=>`<a class="sbtn" href="${k.u}" target="_blank" rel="noopener">${esc(T(k.n))}</a>`).join('')}</div>`:''}${c.forum?`<p style="margin-top:12px"><a class="sbtn" href="${c.forum}" target="_blank" rel="noopener">${lang==='ar'?'منتدى المسابقة':'Competition forum'}&nbsp;${ICON.ext.replace('<svg','<svg width="16" height="16"')}</a></p>`:''}</div>`:''}
+      ${docs?`<div class="box" id="j-dc"><h3>${ICON.file}${T(UI.hDocs)}</h3><div class="docs">${docs}</div></div>`:''}
+    </div>
+    <div class="actbar">${reg}${guideBtn}${!reg&&!guideBtn?`<button type="button" class="btn btn-ghost" id="pClose2">${T(UI.close)}</button>`:''}</div>
+  </div>`;
+  p.hidden=false;document.body.style.overflow='hidden';
+  p.querySelector('.sheet').scrollTop=0;
+  $('#pClose').focus();
+  if(push!==false){try{history.replaceState(null,'','#'+id)}catch(e){}}
+}
+function closePanel(){const p=$('#panel');if(p.hidden)return;p.hidden=true;p.innerHTML='';document.body.style.overflow='';openId=null;try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}if(lastFocus&&lastFocus.focus)lastFocus.focus()}
+
+/* pdf viewer (pdf.js loaded on demand) */
+let pdfReady=null;
+function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s)})}
+function ensurePdf(){if(!pdfReady){const b='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';pdfReady=loadScript(b+'pdf.min.js').then(()=>loadScript(b+'pdf.worker.min.js')).then(()=>{window.pdfjsLib.GlobalWorkerOptions.workerSrc=b+'pdf.worker.min.js';return window.pdfjsLib})}return pdfReady}
+let viewToken=0;
+async function openViewer(c,i){
+  const d=c.docs[i];const url=T(d.f);const v=$('#viewer');const tok=++viewToken;
+  v.innerHTML=`<div class="vbar"><span class="tt">${esc(T(c.name))} · ${esc(T(d.n))}</span><a class="sbtn" href="${url}" target="_blank" rel="noopener">${T(UI.openTab)}</a><button type="button" class="x" id="vClose" aria-label="${T(UI.close)}" style="background:transparent;box-shadow:none;color:#fff">${ICON.x}</button></div><div class="vpages" id="vpages"><div class="vmsg">${T(UI.loading)}</div></div>`;
+  v.hidden=false;$('#vClose').focus();
+  try{
+    const lib=await ensurePdf();
+    const doc=await lib.getDocument({url,isEvalSupported:false}).promise;
+    if(tok!==viewToken)return;
+    const box=$('#vpages');box.innerHTML='';
+    const w=Math.min(box.clientWidth-32,900);const dpr=Math.min(window.devicePixelRatio||1,2);
+    for(let n=1;n<=doc.numPages;n++){
+      if(tok!==viewToken||v.hidden)return;
+      const page=await doc.getPage(n);const vp0=page.getViewport({scale:1});const sc=w/vp0.width;const vp=page.getViewport({scale:sc*dpr});
+      const cv=document.createElement('canvas');cv.width=vp.width;cv.height=vp.height;cv.style.width=Math.floor(vp.width/dpr)+'px';cv.setAttribute('aria-label',(lang==='ar'?'صفحة ':'Page ')+n);
+      box.appendChild(cv);await page.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise;
+    }
+  }catch(e){if(tok===viewToken){$('#vpages').innerHTML=`<div class="vmsg">${T(UI.viewFail)}<br><br><a class="sbtn" style="color:#fff;border-color:#fff" href="${url}" target="_blank" rel="noopener">${T(UI.openTab)}</a></div>`}}
+}
+function closeViewer(){const v=$('#viewer');if(v.hidden)return;viewToken++;v.hidden=true;v.innerHTML='';const b=document.querySelector('#panel [data-view]');if(b)b.focus()}
+
+/* events */
+document.addEventListener('click',e=>{
+  const t=e.target;
+  const chip=t.closest('.chip');if(chip){fSubj=chip.dataset.s;renderFilters();renderGrid();return}
+  const vb=t.closest('[data-view]');if(vb&&openId){openViewer(C.find(c=>c.id===openId),+vb.dataset.view);return}
+  if(t.closest('#vClose')){closeViewer();return}
+  const jb=t.closest('[data-jump]');if(jb){const el=document.getElementById('j-'+jb.dataset.jump);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});return}
+  if(t.closest('#pClose')||t.closest('#pClose2')){closePanel();return}
+  if(t.id==='panel'){closePanel();return}
+  const card=t.closest('[data-id]');if(card&&!t.closest('#panel')){openPanel(card.dataset.id);return}
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){if(!$('#viewer').hidden)closeViewer();else closePanel()}
+  if(e.key==='Tab'&&(!$('#panel').hidden||!$('#viewer').hidden)){const root=!$('#viewer').hidden?$('#viewer'):$('#panel');const f=[...root.querySelectorAll('button,a[href],select,input')].filter(x=>!x.disabled&&x.offsetParent!==null);if(!f.length)return;const first=f[0],last=f[f.length-1];if(e.shiftKey&&document.activeElement===first){last.focus();e.preventDefault()}else if(!e.shiftKey&&document.activeElement===last){first.focus();e.preventDefault()}}
+});
+$('#grade').addEventListener('change',e=>{fGrade=e.target.value;try{localStorage.setItem('rsmc-grade',fGrade)}catch(x){}renderGrid()});
+$('#openOnly').addEventListener('change',e=>{fOpen=e.target.checked;renderGrid()});
+$('#q').addEventListener('input',e=>{fQ=e.target.value.trim();renderGrid()});
+$('#langBtn').addEventListener('click',()=>{lang=lang==='ar'?'en':'ar';try{localStorage.setItem('rsmc-lang',lang)}catch(e){}renderAll();if(openId)openPanel(openId,false)});
+window.addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(C.some(c=>c.id===h))openPanel(h,false)});
+
+function renderAll(){applyStatic();renderFilters();renderGrid();renderSpot();renderCal();renderSteps();renderFaq()}
+renderAll();
+const h0=location.hash.slice(1);if(C.some(c=>c.id===h0))openPanel(h0,false);
+setInterval(()=>{renderGrid();renderCal()},60*60*1000);
+})();
+</script>
+
+</body>
+</html>
