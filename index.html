@@ -893,7 +893,7 @@ function renderCal(){
 const CONTACTS=[
  {n:['أ. أمل درايسه','Ms. Amal Daraiseh'],r:['مشرفة برنامج الموهوبين','Gifted Program Supervisor'],e:'a.daraiseh@rsmc.edu.sa',k:'#7655a4'},
  {n:['أ. أسماء الجويعي','Ms. Asma Aljuwayi'],r:['منسقة الموهوبين – قسم البنات','Gifted Coordinator – Girls’ Section'],e:'a.aljuwayi@rsmc.edu.sa',k:'#1e8fb0'},
- {n:['أ. سلمان الثقفي','Mr. Salman Althaqafi'],r:['منسق الموهوبين – قسم البنين','Gifted Coordinator – Boys’ Section'],e:'',k:'#2f8f5b'}
+ {n:['أ. سلمان الثقفي','Mr. Salman Thagafy'],r:['منسق الموهوبين – قسم البنين','Gifted Coordinator – Boys’ Section'],e:'s.thagafy@rsmc.edu.sa',k:'#2f8f5b'}
 ];
 function renderContacts(){$('#contactList').innerHTML=CONTACTS.map((c,i)=>{const ini=T(c.n).replace(/^(أ\.|Ms\.|Mr\.)\s*/,'').trim().charAt(0);
  return `<div class="contact" style="--k:${c.k}"><div class="av" aria-hidden="true">${esc(ini)}</div><div class="cbody"><div class="cn">${esc(T(c.n))}</div><div class="cr">${esc(T(c.r))}</div>${c.e?`<div class="ce"><a class="mail en-face" href="mailto:${c.e}" dir="ltr">${c.e}</a><button type="button" class="sbtn" data-copy="${c.e}">${T(UI.copy)}</button></div>`:`<div class="cr2">${T(UI.viaSchool)}</div>`}</div></div>`}).join('')}
