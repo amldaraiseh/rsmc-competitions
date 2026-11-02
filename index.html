@@ -576,7 +576,7 @@ const UI={
  subj:{en:['اللغة الإنجليزية','English'],math:['الرياضيات','Math'],sci:['العلوم','Science'],code:['البرمجة والتقنية','Coding & Tech']},
  grades:['الصفوف','Grades'],regClose:['آخر موعد للتسجيل','Registration closes'],testDay:['موعد الاختبار','Test day'],mode:['طريقة الاختبار','Format'],
  details:['التفاصيل','Details'],daysLeft:[n=>n===1?'يوم واحد متبقٍّ':(n===2?'يومان متبقيان':(n<=10?n+' أيام متبقية':n+' يومًا متبقيًا')),n=>n===1?'1 day left':n+' days left'],
- today:['آخر يوم اليوم','Closes today'],closed:['انتهى التسجيل','Registration closed'],multi:['مواعيد متعددة','Multiple dates'],
+ today:['آخر يوم اليوم','Closes today'],closed:['انتهى التسجيل','Registration closed'],regOpenNow:['التسجيل مفتوح','Registration open'],regSoon:['يفتح التسجيل قريبًا','Registration opens soon'],regNoDate:['مفتوح (لم يُعلن آخر موعد)','Open (no closing date announced)'],multi:['مواعيد متعددة','Multiple dates'],
  nextReg:['أقرب موعد تسجيل','Next deadline'],noneOpen:['لا توجد مسابقات مفتوحة حاليًا','No competitions open right now'],
  days:['يوم','days'],hours:['ساعة','hours'],mins:['دقيقة','min'],secs:['ثانية','sec'],
  spotK:['أقرب موعد لإغلاق التسجيل','Next registration deadline'],openDetails:['التفاصيل والتسجيل','Details & registration'],
@@ -779,7 +779,30 @@ const C=[
  dates:[{d:'2026-10-06',t:'info',l:['فتح التقديم','Applications open']},{d:'2026-12-12',t:'reg'},{d:'2027-01-23',t:'test',l:['الاختبار التأهيلي حضوريًا (أكثر من 50 مركز اختبار)','Qualifying test in person (50+ test centres)']},{d:'2027-04-02',d2:'2027-04-04',t:'final',l:['الجولة النهائية في كاوست','Final round at KAUST']}],
  prizes:[['جوائز خاصة للفائزين في المسار الأول.','Special prizes for Track 1 winners.'],['مشاركة مجانية في البرامج الأكاديمية لأكاديمية كاوست.','Free participation in KAUST Academy programs.'],['الأول في المسارين الثاني والثالث: معسكر تدريب صيفي في جامعة كامبريدج بالمملكة المتحدة.','Top student in Tracks 2 and 3: a summer training camp at the University of Cambridge, UK.'],['تكاليف المرحلة النهائية مغطاة: السكن في كاوست، والإعاشة، وتذاكر الطيران الداخلية، والمواصلات.','Final-round costs covered: accommodation at KAUST, meals, domestic flights and transport.']],
  prep:[['نماذج أسئلة تجريبية متاحة في صفحة المسابقة بأكاديمية كاوست.','Sample practice questions are on the KAUST Academy competition page.'],['ملف «النماذج التجريبية والحلول» في قسم الملفات يجمع روابط النماذج والحلول ومقاطع الشرح لكل مسار.','The “Practice tests and solutions” file below gathers the practice sets, solutions and explainer videos for each track.']],
- register:KMC_URL,docs:[{f:['docs/kmc-ar.pdf','docs/kmc-en.pdf'],n:['الأسئلة الشائعة','Frequently asked questions'],d:['الملف الرسمي بالعربية، وترجمة المدرسة بالإنجليزية','Official Arabic file; school translation in English']},{f:['docs/kmc-poster-ar.pdf','docs/kmc-poster-en.pdf'],n:['إعلان المدرسة','School announcement'],d:['الإعلان مع الأسئلة الشائعة، والأزرار قابلة للضغط','Poster with the FAQ; buttons are clickable']},{f:['docs/kmc-practice-links.pdf','docs/kmc-practice-links.pdf'],n:['النماذج التجريبية والحلول','Practice tests and solutions'],d:['روابط مباشرة للنماذج والإجابات والحلول ومقاطع الشرح لكل مسار (بالعربية)','Direct links to practice sets, answers, solutions and explainer videos for each track (Arabic)']}]}
+ register:KMC_URL,docs:[{f:['docs/kmc-ar.pdf','docs/kmc-en.pdf'],n:['الأسئلة الشائعة','Frequently asked questions'],d:['الملف الرسمي بالعربية، وترجمة المدرسة بالإنجليزية','Official Arabic file; school translation in English']},{f:['docs/kmc-poster-ar.pdf','docs/kmc-poster-en.pdf'],n:['إعلان المدرسة','School announcement'],d:['الإعلان مع الأسئلة الشائعة، والأزرار قابلة للضغط','Poster with the FAQ; buttons are clickable']},{f:['docs/kmc-practice-links.pdf','docs/kmc-practice-links.pdf'],n:['النماذج التجريبية والحلول','Practice tests and solutions'],d:['روابط مباشرة للنماذج والإجابات والحلول ومقاطع الشرح لكل مسار (بالعربية)','Direct links to practice sets, answers, solutions and explainer videos for each track (Arabic)']}]},
+{id:'kangaroo-en',subj:'en',logo:null,logoTxt:'KANGAROO',art:'img/art-te-en.webp',
+ name:['مسابقة الكنغارو الدولية للغة الإنجليزية 2026','Kangaroo International English Competition 2026'],org:['منصة مسابقات (Musabakat)','Musabakat platform'],
+ short:['اختبار إنجليزي عن بُعد بستة مستويات حسب الصف، من الأول حتى الثاني عشر.','An online English test with six levels by grade, from Grade 1 to Grade 12.'],
+ about:[['مسابقة دولية في اللغة الإنجليزية تقدّمها منصة مسابقات بالتعاون مع جهات تنظيم دولية، لطلبة المدارس من الصف الأول حتى الصف الثاني عشر (حتى عمر 18 سنة).','An international English competition offered by the Musabakat platform with international organizing bodies, for school students from Grade 1 to Grade 12 (age 18 or under).'],['الاختبار عن بُعد، اختيار من متعدد، مدته 60 دقيقة، ويُعقد يومي الجمعة والسبت 25 و26 ديسمبر حسب المستوى.','The test is online, multiple choice, 60 minutes, held on Friday and Saturday, 25 and 26 December, by level.']],
+ gmin:1,gmax:12,gradeLbl:['1 – 12','1 – 12'],
+ facts:[[['الاختبار','Test'],['عن بُعد، اختيار من متعدد','Online, multiple choice']],[['المدة','Duration'],['60 دقيقة لكل المستويات','60 minutes, all levels']],[['الرسوم','Fee'],['150 ريالًا','SAR 150']],[['الدفع','Payment'],['Apple Pay، مدى، Mastercard، Visa','Apple Pay, mada, Mastercard, Visa']],[['الشهادات','Certificates'],['شهادة رقمية لجميع المشاركين','Digital certificate for every participant']]],
+ mode:['عن بُعد','Online'],fee:150,regState:'open',
+ cats:{head:[['الصفوف','Grades'],['المستوى','Level'],['الأسئلة','Questions']],rows:[[['1 – 2','1 – 2'],['اختبار البداية (Pre A1)','Start Test (Pre A1)'],['25','25']],[['3 – 4','3 – 4'],['اختبار القصة (Pre A1)','Story Test (Pre A1)'],['30','30']],[['5 – 6','5 – 6'],['اختبار الجوي (A1)','Joey Test (A1)'],['40','40']],[['7 – 8','7 – 8'],['اختبار الولابي (A2)','Wallaby Test (A2)'],['40','40']],[['9 – 10','9 – 10'],['الكنغارو الرمادي (B1)','Grey Kangaroo (B1)'],['40','40']],[['11 – 12','11 – 12'],['الكنغارو الأحمر (B2)','Red Kangaroo (B2)'],['40','40']]],note:['مدة الاختبار 60 دقيقة لكل المستويات.','Each level’s test is 60 minutes.']},
+ dates:[{d:'2026-11-02',t:'info',l:['التسجيل مفتوح الآن (لم تُعلن المنصة آخر موعد للتسجيل)','Registration is open now (the platform has not announced a closing date)']},{d:'2026-12-25',d2:'2026-12-26',t:'test',l:['الاختبار عن بُعد حسب المستوى','Online test, by level']}],
+ prizes:[['المركز الأول في كل مستوى: جهاز لوحي Samsung وكأس.','1st place in each level: a Samsung tablet and a cup.'],['المركز الثاني: جوال Samsung وميدالية.','2nd place: a Samsung phone and a medal.'],['المركز الثالث: سكوتر كهربائي وميدالية.','3rd place: an electric scooter and a medal.'],['شهادة مطبوعة لأول ثلاثة في كل مستوى، وشهادة رقمية لجميع المشاركين.','Printed certificate for the top three in each level; digital certificate for all participants.']],
+ register:'https://www.musabakat.com/ar/competition/8/kangaroo-international-english-competition-2026-8',schoolReg:['التسجيل والدفع مباشرة عبر منصة مسابقات بإنشاء حساب ثم «اشترك الآن». للاستفسار: info@musabakat.com','Registration and payment are directly on the Musabakat platform: create an account, then “Subscribe now”. Questions: info@musabakat.com']},
+
+{id:'kangaroo-sci',subj:'sci',logo:null,logoTxt:'KANGAROO',art:'img/art-hkiso.webp',
+ name:['مسابقة الكنغارو العالمية للعلوم 2027','Kangaroo Global Science Competition 2027'],org:['منصة مسابقات (Musabakat)','Musabakat platform'],
+ short:['اختبار علوم عن بُعد للصفوف 1 – 12. يفتح التسجيل قريبًا.','An online science test for Grades 1 – 12. Registration opens soon.'],
+ about:[['مسابقة عالمية في العلوم تقدّمها منصة مسابقات بالتعاون مع جهات تنظيم دولية، لطلبة المدارس من الصف الأول حتى الصف الثاني عشر (حتى عمر 18 سنة).','A global science competition offered by the Musabakat platform with international organizing bodies, for school students from Grade 1 to Grade 12 (age 18 or under).'],['الاختبار عن بُعد، اختيار من متعدد، مدته 60 دقيقة، ويُعقد يومي الجمعة والسبت 12 و13 فبراير حسب المستوى. لم يفتح التسجيل بعد.','The test is online, multiple choice, 60 minutes, held on Friday and Saturday, 12 and 13 February, by level. Registration has not opened yet.']],
+ gmin:1,gmax:12,gradeLbl:['1 – 12','1 – 12'],
+ facts:[[['الاختبار','Test'],['عن بُعد، اختيار من متعدد','Online, multiple choice']],[['المدة','Duration'],['60 دقيقة لكل المستويات','60 minutes, all levels']],[['الرسوم','Fee'],['135 ريالًا','SAR 135']],[['الشهادات','Certificates'],['شهادة رقمية لجميع المشاركين','Digital certificate for every participant']]],
+ mode:['عن بُعد','Online'],fee:135,regState:'upcoming',
+ cats:{head:[['الصفوف','Grades'],['الأسئلة','Questions'],['المدة','Duration']],rows:[[['1 – 2','1 – 2'],['25','25'],['60 دقيقة','60 min']],[['3 – 4','3 – 4'],['30','30'],['60 دقيقة','60 min']],[['5 – 12','5 – 12'],['40','40'],['60 دقيقة','60 min']]]},
+ dates:[{d:'2026-11-02',t:'info',l:['يفتح التسجيل قريبًا (لم تُعلن المنصة الموعد بعد)','Registration opens soon (date not yet announced)']},{d:'2027-02-12',d2:'2027-02-13',t:'test',l:['الاختبار عن بُعد حسب المستوى','Online test, by level']}],
+ prizes:[['كأس للمركز الأول في كل مستوى.','A cup for 1st place in each level.'],['ميدالية للمركزين الثاني والثالث.','A medal for 2nd and 3rd place.'],['شهادة مطبوعة لأول ثلاثة في كل مستوى، وشهادة رقمية لجميع المشاركين.','Printed certificate for the top three in each level; digital certificate for all participants.']],
+ register:'https://www.musabakat.com/ar/competition/5/kangaroo-global-science-competition-2027',schoolReg:['سيكون التسجيل والدفع مباشرة عبر منصة مسابقات عند فتحه.','Registration and payment will be directly on the Musabakat platform once it opens.']}
 ];
 
 /* ---------- helpers ---------- */
@@ -803,8 +826,9 @@ function daysLeft(iso){const ms=endOf(iso)-now();if(ms<0)return -1;const r=new D
 function regDates(c){if(c.sessions)return c.sessions.map(s=>s[1]);return (c.dates||[]).filter(d=>d.t==='reg').map(d=>d.d)}
 function nextReg(c){const r=regDates(c).filter(d=>endOf(d)>=now()).sort();return r[0]||null}
 function nextTest(c){if(c.sessions){const s=c.sessions.find(s=>endOf(s[1])>=now());return s?s[0]:c.sessions[c.sessions.length-1][0]}const t=(c.dates||[]).find(d=>d.t==='test');return t?t.d:null}
-function status(c){const n=nextReg(c);if(!n)return {k:'closed'};const dl=daysLeft(n);return {k:dl<=14?'soon':'open',d:n,dl}}
-function badge(c){const s=status(c);if(s.k==='closed')return `<span class="badge b-closed">${T(UI.closed)}</span>`;if(s.dl===0)return `<span class="badge b-soon">${T(UI.today)}</span>`;return `<span class="badge ${s.k==='soon'?'b-soon':'b-open'}">${UI.daysLeft[L()](s.dl)}</span>`}
+function testEnd(c){const t=(c.dates||[]).filter(d=>d.t==='test').map(d=>d.d2||d.d).sort().pop();return t?endOf(t):0}
+function status(c){const n=nextReg(c);if(!n){if(c.regState&&testEnd(c)>=now())return {k:c.regState,nod:true};return {k:'closed'}};const dl=daysLeft(n);return {k:dl<=14?'soon':'open',d:n,dl}}
+function badge(c){const s=status(c);if(s.nod)return `<span class="badge ${s.k==='open'?'b-open':'b-multi'}">${T(s.k==='open'?UI.regOpenNow:UI.regSoon)}</span>`;if(s.k==='closed')return `<span class="badge b-closed">${T(UI.closed)}</span>`;if(s.dl===0)return `<span class="badge b-soon">${T(UI.today)}</span>`;return `<span class="badge ${s.k==='soon'?'b-soon':'b-open'}">${UI.daysLeft[L()](s.dl)}</span>`}
 const ICON={
  users:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14.2c2.4.2 4 1.8 4.5 4.3"/></svg>',
  cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
@@ -845,11 +869,11 @@ function renderFilters(){
 function matches(c){
   if(fSubj!=='all'&&c.subj!==fSubj)return false;
   if(fGrade!=='all'){const g=+fGrade;if(c.gmin!=null&&(g<c.gmin||g>c.gmax))return false;}
-  if(fOpen&&status(c).k==='closed')return false;
+  if(fOpen&&(status(c).k==='closed'||status(c).k==='upcoming'))return false;
   if(fQ){const q=fQ.toLowerCase();if(!(c.name[0]+' '+c.name[1]+' '+c.org[1]).toLowerCase().includes(q))return false}
   return true;
 }
-function sortKey(c){const n=nextReg(c);return n?endOf(n):9e15}
+function sortKey(c){const n=nextReg(c);if(n)return endOf(n);const s=status(c);return s.nod?testEnd(c):9e15}
 function renderGrid(){
   const list=C.filter(matches).sort((a,b)=>sortKey(a)-sortKey(b));
   if(!list.length){$('#grid').innerHTML=`<div class="empty">${T(UI.empty)}</div>`;return}
@@ -862,7 +886,7 @@ function renderGrid(){
         <h3>${esc(T(c.name))}</h3><p>${esc(T(c.short))}</p>
         <div class="meta">
           <div class="mrow">${ICON.users}<span class="k">${T(UI.grades)}</span><span class="v">${esc(g)}</span></div>
-          <div class="mrow">${ICON.cal}<span class="k">${T(c.regLbl||UI.regClose)}</span><span class="v">${nr?esc(fmt(nr)):esc(T(UI.closed))}</span></div>
+          <div class="mrow">${ICON.cal}<span class="k">${T(c.regLbl||UI.regClose)}</span><span class="v">${nr?esc(fmt(nr)):(status(c).nod?esc(T(status(c).k==='open'?UI.regNoDate:UI.regSoon)):esc(T(UI.closed)))}</span></div>
           <div class="mrow">${ICON.clock}<span class="k">${T(c.testLbl||UI.testDay)}</span><span class="v">${nt?esc(fmt(nt)):'–'}${c.sessions?' · <span class="badge b-multi">'+T(UI.multi)+'</span>':''}</span></div>
           <div class="mrow">${ICON.monitor}<span class="k">${T(UI.mode)}</span><span class="v">${esc(T(c.mode))}</span></div>
         </div>
