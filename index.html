@@ -14,7 +14,7 @@
   --teal:#0e6368; --teal-deep:#0a4347; --ink:#12302f; --muted:#4a6261; --soft:#34504f;
   --bg:#f3faf7; --bg2:#e3f3ec; --surface:#ffffff; --surface-2:#f7fbf9; --mint:#dff3ea; --mint-2:#cfeee0; --line:#d5e3df;
   --green:#47ba79; --green-ink:#1d7a49; --yellow:#fed873; --purple:#7655a4; --cyan:#35c4ec; --orange:#f47c57;
-  --chip-en:#e6f6fc; --chip-en-ink:#156f8c; --chip-math:#efe9f8; --chip-math-ink:#5b4290; --chip-sci:#e3f5ea; --chip-sci-ink:#1d7a49; --chip-code:#fff1e0; --chip-code-ink:#9a4a12;
+  --chip-en:#e6f6fc; --chip-en-ink:#156f8c; --chip-math:#efe9f8; --chip-math-ink:#5b4290; --chip-sci:#e3f5ea; --chip-sci-ink:#1d7a49; --chip-code:#fff1e0; --chip-code-ink:#9a4a12; --chip-school:#fdf3d3; --chip-school-ink:#8a6510;
   --danger:#b4432a; --danger-bg:#fde8e1; --warn-bg:#fff4d2; --warn-ink:#7a5a00;
   --shadow:0 14px 34px rgba(10,67,71,.10); --shadow-lg:0 24px 60px rgba(10,67,71,.18);
   --hero-teal:#0e6368; --on-teal:#ffffff; --on-teal-soft:#d5e3df;
@@ -26,7 +26,7 @@
   --teal:#6fd0c8; --teal-deep:#a6e6df; --ink:#e4f2ee; --muted:#9bbcb6; --soft:#bcd6d1;
   --bg:#0a1c1e; --bg2:#0d2527; --surface:#112b2d; --surface-2:#0f2628; --mint:#14393a; --mint-2:#1a4645; --line:#244a4c;
   --green-ink:#7fe0a9;
-  --chip-en:#103a46; --chip-en-ink:#8fdcf4; --chip-math:#2a2343; --chip-math-ink:#cbb8f0; --chip-sci:#13392a; --chip-sci-ink:#8fe5b3; --chip-code:#3a2614; --chip-code-ink:#f6c08f;
+  --chip-en:#103a46; --chip-en-ink:#8fdcf4; --chip-math:#2a2343; --chip-math-ink:#cbb8f0; --chip-sci:#13392a; --chip-sci-ink:#8fe5b3; --chip-code:#3a2614; --chip-code-ink:#f6c08f; --chip-school:#3a2f10; --chip-school-ink:#f3d47e;
   --danger:#ff9b80; --danger-bg:#3a1d17; --warn-bg:#3a3214; --warn-ink:#f3d675;
   --shadow:0 14px 34px rgba(0,0,0,.35); --shadow-lg:0 24px 60px rgba(0,0,0,.5);
   --hero-teal:#0e6368; --on-teal:#ffffff; --on-teal-soft:#cfe6e1;
@@ -35,7 +35,7 @@
   --teal:#6fd0c8; --teal-deep:#a6e6df; --ink:#e4f2ee; --muted:#9bbcb6; --soft:#bcd6d1;
   --bg:#0a1c1e; --bg2:#0d2527; --surface:#112b2d; --surface-2:#0f2628; --mint:#14393a; --mint-2:#1a4645; --line:#244a4c;
   --green-ink:#7fe0a9;
-  --chip-en:#103a46; --chip-en-ink:#8fdcf4; --chip-math:#2a2343; --chip-math-ink:#cbb8f0; --chip-sci:#13392a; --chip-sci-ink:#8fe5b3; --chip-code:#3a2614; --chip-code-ink:#f6c08f;
+  --chip-en:#103a46; --chip-en-ink:#8fdcf4; --chip-math:#2a2343; --chip-math-ink:#cbb8f0; --chip-sci:#13392a; --chip-sci-ink:#8fe5b3; --chip-code:#3a2614; --chip-code-ink:#f6c08f; --chip-school:#3a2f10; --chip-school-ink:#f3d47e;
   --danger:#ff9b80; --danger-bg:#3a1d17; --warn-bg:#3a3214; --warn-ink:#f3d675;
   --shadow:0 14px 34px rgba(0,0,0,.35); --shadow-lg:0 24px 60px rgba(0,0,0,.5);
   --hero-teal:#0e6368; --on-teal:#ffffff; --on-teal-soft:#cfe6e1;
@@ -151,7 +151,7 @@ input[type=search]{min-width:0;width:200px}
 .card-top .logo img{max-height:46px;max-width:126px;display:block}
 .card-top .logo .txt{font-family:var(--f-en);font-weight:700;font-size:22px;color:#0e6368}
 .subj{position:absolute;bottom:14px;inset-inline-start:20px;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:700}
-.s-en{background:var(--chip-en);color:var(--chip-en-ink)}.s-math{background:var(--chip-math);color:var(--chip-math-ink)}.s-sci{background:var(--chip-sci);color:var(--chip-sci-ink)}.s-code{background:var(--chip-code);color:var(--chip-code-ink)}
+.s-en{background:var(--chip-en);color:var(--chip-en-ink)}.s-math{background:var(--chip-math);color:var(--chip-math-ink)}.s-sci{background:var(--chip-sci);color:var(--chip-sci-ink)}.s-code{background:var(--chip-code);color:var(--chip-code-ink)}.s-school{background:var(--chip-school);color:var(--chip-school-ink)}
 .card-body{padding:16px 20px 20px;display:flex;flex-direction:column;gap:12px;flex:1}
 .card h3{margin:0;font-size:21px;line-height:1.35;color:var(--teal-deep)}
 .card p{margin:0;color:var(--soft);font-size:15px;line-height:1.55}
@@ -285,11 +285,12 @@ ul.list{margin:0;padding-inline-start:20px;display:grid;gap:6px;color:var(--soft
 .vmsg{color:#fff;text-align:center;padding:40px 16px;max-width:520px}
 
 /* ===== colour layer (RSMC accents) ===== */
-:root{--c-en:#35c4ec;--c-en2:#1e8fb0;--c-math:#7655a4;--c-math2:#5b4290;--c-sci:#47ba79;--c-sci2:#2f8f5b;--c-code:#f47c57;--c-code2:#d4582f;--c-y:#fed873}
+:root{--c-en:#35c4ec;--c-en2:#1e8fb0;--c-math:#7655a4;--c-math2:#5b4290;--c-sci:#47ba79;--c-sci2:#2f8f5b;--c-code:#f47c57;--c-code2:#d4582f;--c-school:#e0a526;--c-school2:#a8790a;--c-y:#fed873}
 [data-s="en"]{--sc:var(--c-en);--sc2:var(--c-en2);--sink:var(--chip-en-ink);--stint:var(--chip-en)}
 [data-s="math"]{--sc:var(--c-math);--sc2:var(--c-math2);--sink:var(--chip-math-ink);--stint:var(--chip-math)}
 [data-s="sci"]{--sc:var(--c-sci);--sc2:var(--c-sci2);--sink:var(--chip-sci-ink);--stint:var(--chip-sci)}
 [data-s="code"]{--sc:var(--c-code);--sc2:var(--c-code2);--sink:var(--chip-code-ink);--stint:var(--chip-code)}
+[data-s="school"]{--sc:var(--c-school);--sc2:var(--c-school2);--sink:var(--chip-school-ink);--stint:var(--chip-school)}
 .hero{background:radial-gradient(60% 70% at 0% 0%,rgba(53,196,236,.16),transparent 60%),radial-gradient(50% 60% at 100% 30%,rgba(254,216,115,.22),transparent 60%),radial-gradient(60% 60% at 30% 100%,rgba(118,85,164,.14),transparent 60%),linear-gradient(180deg,var(--bg),var(--bg2))}
 .hero::before{content:"";position:absolute;top:0;inset-inline-end:0;width:min(34vw,380px);aspect-ratio:1;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Cpolygon%20points%3D%22400%2C0%20400%2C160%20240%2C0%22%20fill%3D%22%2335c4ec%22/%3E%3Cpolygon%20points%3D%22240%2C0%20320%2C80%20160%2C80%22%20fill%3D%22%23fed873%22/%3E%3Cpolygon%20points%3D%22400%2C160%20400%2C320%20320%2C240%22%20fill%3D%22%23f47c57%22/%3E%3Cpolygon%20points%3D%22320%2C80%20400%2C160%20320%2C240%20240%2C160%22%20fill%3D%22%237655a4%22/%3E%3Cpolygon%20points%3D%22240%2C160%20320%2C240%20160%2C240%22%20fill%3D%22%2347ba79%22/%3E%3Cpolygon%20points%3D%22400%2C320%20400%2C400%20320%2C400%22%20fill%3D%22%2347ba79%22/%3E%3Cpolygon%20points%3D%22160%2C80%20240%2C160%20160%2C160%22%20fill%3D%22%230e6368%22%20fill-opacity%3D%22.85%22/%3E%3C/svg%3E") no-repeat top right/contain;opacity:.95;pointer-events:none}
 [dir="rtl"] .hero::before{transform:scaleX(-1)}
@@ -311,7 +312,7 @@ h1 span{background:linear-gradient(90deg,var(--c-math),var(--c-en2) 50%,var(--c-
 .count div:nth-child(1) b{color:#fed873}
 .kicker{background:var(--kc,var(--hero-teal))}
 #competitions .kicker{--kc:var(--c-math)}#calendar .kicker{--kc:var(--c-en2)}#steps .kicker{--kc:var(--c-code2)}#faq .kicker{--kc:var(--c-sci2)}
-.chip[data-s="en"]{--sc:var(--c-en2)}.chip[data-s="math"]{--sc:var(--c-math)}.chip[data-s="sci"]{--sc:var(--c-sci2)}.chip[data-s="code"]{--sc:var(--c-code2)}.chip[data-s="all"]{--sc:var(--hero-teal)}
+.chip[data-s="en"]{--sc:var(--c-en2)}.chip[data-s="math"]{--sc:var(--c-math)}.chip[data-s="sci"]{--sc:var(--c-sci2)}.chip[data-s="code"]{--sc:var(--c-code2)}.chip[data-s="school"]{--sc:var(--c-school2)}.chip[data-s="all"]{--sc:var(--hero-teal)}
 .chip{border-color:color-mix(in srgb,var(--sc) 40%,var(--line))}
 .chip::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--sc);flex-shrink:0}
 .chip[aria-pressed="true"]{background:var(--sc);border-color:var(--sc)}
@@ -573,7 +574,7 @@ const UI={
  slogan:['من هنا يُصنع المستقبل','The future starts here.'],
  disclaimer:['المعلومات مأخوذة من الأدلة والإعلانات الرسمية للجهات المنظمة للعام 2026 – 2027، وقد تتغير مواعيد الجولات العالمية. التسجيل والدفع يتمّان مباشرة عبر الموقع الرسمي لكل مسابقة، ولا تجمع هذه الصفحة أي بيانات شخصية.','Information is taken from the organizers’ official 2026 – 2027 guides and announcements; global round dates may change. Registration and payment happen directly on each competition’s official website. This page collects no personal data.'],
  all:['الكل','All'],allGrades:['كل الصفوف','All grades'],gradeN:['الصف ','Grade '],
- subj:{en:['اللغة الإنجليزية','English'],math:['الرياضيات','Math'],sci:['العلوم','Science'],code:['البرمجة والتقنية','Coding & Tech']},
+ subj:{en:['اللغة الإنجليزية','English'],math:['الرياضيات','Math'],sci:['العلوم','Science'],code:['البرمجة والتقنية','Coding & Tech'],school:['مسابقة داخلية بالمدرسة','In-school competition']},
  grades:['الصفوف','Grades'],regClose:['آخر موعد للتسجيل','Registration closes'],testDay:['موعد الاختبار','Test day'],mode:['طريقة الاختبار','Format'],
  details:['التفاصيل','Details'],daysLeft:[n=>n===1?'يوم واحد متبقٍّ':(n===2?'يومان متبقيان':(n<=10?n+' أيام متبقية':n+' يومًا متبقيًا')),n=>n===1?'1 day left':n+' days left'],
  today:['آخر يوم اليوم','Closes today'],closed:['انتهى التسجيل','Registration closed'],regOpenNow:['التسجيل مفتوح','Registration open'],regSoon:['يفتح التسجيل قريبًا','Registration opens soon'],regNoDate:['مفتوح (لم يُعلن آخر موعد)','Open (no closing date announced)'],multi:['مواعيد متعددة','Multiple dates'],
@@ -780,6 +781,40 @@ const C=[
  prizes:[['جوائز خاصة للفائزين في المسار الأول.','Special prizes for Track 1 winners.'],['مشاركة مجانية في البرامج الأكاديمية لأكاديمية كاوست.','Free participation in KAUST Academy programs.'],['الأول في المسارين الثاني والثالث: معسكر تدريب صيفي في جامعة كامبريدج بالمملكة المتحدة.','Top student in Tracks 2 and 3: a summer training camp at the University of Cambridge, UK.'],['تكاليف المرحلة النهائية مغطاة: السكن في كاوست، والإعاشة، وتذاكر الطيران الداخلية، والمواصلات.','Final-round costs covered: accommodation at KAUST, meals, domestic flights and transport.']],
  prep:[['نماذج أسئلة تجريبية متاحة في صفحة المسابقة بأكاديمية كاوست.','Sample practice questions are on the KAUST Academy competition page.'],['ملف «النماذج التجريبية والحلول» في قسم الملفات يجمع روابط النماذج والحلول ومقاطع الشرح لكل مسار.','The “Practice tests and solutions” file below gathers the practice sets, solutions and explainer videos for each track.']],
  register:KMC_URL,docs:[{f:['docs/kmc-ar.pdf','docs/kmc-en.pdf'],n:['الأسئلة الشائعة','Frequently asked questions'],d:['الملف الرسمي بالعربية، وترجمة المدرسة بالإنجليزية','Official Arabic file; school translation in English']},{f:['docs/kmc-poster-ar.pdf','docs/kmc-poster-en.pdf'],n:['إعلان المدرسة','School announcement'],d:['الإعلان مع الأسئلة الشائعة، والأزرار قابلة للضغط','Poster with the FAQ; buttons are clickable']},{f:['docs/kmc-practice-links.pdf','docs/kmc-practice-links.pdf'],n:['النماذج التجريبية والحلول','Practice tests and solutions'],d:['روابط مباشرة للنماذج والإجابات والحلول ومقاطع الشرح لكل مسار (بالعربية)','Direct links to practice sets, answers, solutions and explainer videos for each track (Arabic)']}]},
+{id:'ratil',subj:'school',logo:null,logoTxt:'رتّل',art:'img/art-ratil.webp',
+ name:['مسابقة القرآن الكريم «رتّل»','Quran Competition “Rattil”'],org:['مدارس الرياض – مدينة مسك · المبادرات المدرسية','Riyadh Schools – Misk City · School Initiatives'],
+ short:['مسابقة حفظ للصفوف 1 – 3، وتلاوة وتجويد للصفوف 4 – 9.','Memorization for Grades 1 – 3; recitation and tajweed for Grades 4 – 9.'],
+ about:[['«يُقال لصاحب القرآن: اقرأ وارتقِ ورتِّل كما كنتَ ترتِّل في الدنيا، فإن منزلتك عند آخر آية تقرؤها» – رواه أبو داود والترمذي.','“It will be said to the companion of the Quran: recite, rise and recite slowly as you used to in the world, for your rank is at the last verse you recite.” – Abu Dawud and Al-Tirmidhi.'],['مسابقة مدرسية لجميع الطلاب من الصف الأول إلى الصف التاسع، تهدف إلى تعزيز الارتباط بكتاب الله، وتنمية مهارات التلاوة والتجويد، وإتقان المخارج، وتشجيع القراءة المتقنة.','A school competition for all students from Grade 1 to Grade 9, to strengthen the bond with the Book of Allah, build recitation and tajweed skills, master articulation, and encourage accurate reading.']],
+ gmin:1,gmax:9,gradeLbl:['جميع الطلاب من الصف الأول إلى التاسع','All students, Grades 1 – 9'],
+ facts:[[['المسارات','Tracks'],['الحفظ (1 – 3) · التلاوة والتجويد (4 – 9)','Memorization (1 – 3) · Recitation and tajweed (4 – 9)']],[['الموعد','Dates'],['8 – 12 نوفمبر 2026 (28 جمادى الأولى – 2 جمادى الآخرة 1448هـ)','8 – 12 November 2026 (28 Jumada I – 2 Jumada II 1448 AH)']],[['التقييم','Assessment'],['فردي أمام لجنة التحكيم','Individually before the judging panel']]],
+ mode:['حضوري في المدرسة','In person at school'],regState:'open',regTxt:['بالترشيح عبر المدرسة','School nomination'],
+ cats:{head:[['الصفوف','Grades'],['المسار','Track'],['السورة','Surah'],['النطاق','Verses']],rows:[[['الأول','Grade 1'],['الحفظ','Memorization'],['سورة النبأ','An-Naba’'],['الآيات 1 – 20','Verses 1 – 20']],[['الثاني','Grade 2'],['الحفظ','Memorization'],['سورة المرسلات','Al-Mursalat'],['الآيات 1 – 24','Verses 1 – 24']],[['الثالث','Grade 3'],['الحفظ','Memorization'],['سورة الملك','Al-Mulk'],['الآيات 1 – 12','Verses 1 – 12']],[['الرابع – السادس','Grades 4 – 6'],['التلاوة والتجويد','Recitation and tajweed'],['سورة الحجرات','Al-Hujurat'],['الآيات 1 – 18','Verses 1 – 18']],[['السابع – التاسع','Grades 7 – 9'],['التلاوة والتجويد','Recitation and tajweed'],['سورة المؤمنون','Al-Mu’minun'],['الآيات 1 – 22','Verses 1 – 22']]],note:['المعايير: إتقان الحفظ، سلامة التلاوة، أحكام التجويد، مخارج الحروف وصفاتها، حسن الأداء. تُراعى الفروق العمرية لطلاب الصفوف الأول والثاني والثالث.','Criteria: memorization, accurate recitation, tajweed rules, letter articulation and qualities, and delivery. Age differences are considered for Grades 1 – 3.']},
+ dates:[{d:'2026-11-08',d2:'2026-11-12',t:'test',l:['أيام المسابقة أمام لجنة التحكيم','Competition days before the judging panel']}],
+ prep:[['يُرشَّح الطلاب الراغبون من الصفوف المستهدفة.','Interested students from the target grades are nominated.'],['تختار اللجنة مواضع مختلفة من السورة للتسميع، وليس بالضرورة من بدايتها.','The panel picks different passages of the surah to recite, not necessarily from the start.']],
+ register:null,schoolReg:['المشاركة عبر المدرسة بترشيح الطلاب الراغبين من الصفوف المستهدفة.','Entry is through the school: interested students from the target grades are nominated.'],docs:[{f:['docs/ratil-ar.pdf','docs/ratil-ar.pdf'],n:['إعلان المسابقة','Competition announcement'],d:['بالعربية','Arabic']}]},
+
+{id:'talent-show',subj:'school',logo:null,logoTxt:'TALENT SHOW',art:'img/art-talent-show.webp',
+ name:['عرض المواهب RSMC','RSMC Talent Show'],org:['مدارس الرياض – مدينة مسك','Riyadh Schools – Misk City'],
+ short:['كل موهبة مرحّب بها! آخر فرصة: تم تمديد التسجيل حتى الأربعاء 18 نوفمبر.','Every talent welcome! Last call: sign-up extended to Wednesday 18 November.'],
+ about:[['أرنا موهبتك! عرض مواهب مدرسي مفتوح لكل المواهب.','Show us your talent! A school talent show where every talent is welcome.'],['آخر فرصة: تم تمديد التسجيل حتى الأربعاء 18 نوفمبر 2026.','Last call: sign-up has been extended to Wednesday, 18 November 2026.']],
+ gmin:null,gmax:null,gradeLbl:['كل المواهب مرحّب بها','Every talent welcome'],
+ facts:[[['التسجيل','Sign-up'],['نموذج إلكتروني (امسح الرمز في الإعلان)','Online form (scan the code on the poster)']],[['آخر موعد','Deadline'],['الأربعاء 18 نوفمبر 2026','Wednesday, 18 November 2026']]],
+ mode:['حضوري في المدرسة','In person at school'],
+ dates:[{d:'2026-11-18',t:'reg'}],
+ register:'https://forms.cloud.microsoft/r/1Bn9AK601S',docs:[{f:['docs/talent-show-poster.pdf','docs/talent-show-poster.pdf'],n:['إعلان العرض','Show poster'],d:['بالإنجليزية والعربية','English and Arabic']}]},
+
+{id:'misk-writer',subj:'school',logo:null,logoTxt:'كاتب مسك',art:'img/art-misk-writer.webp',
+ name:['مسابقة «كاتب مسك»','“Misk Writer” Competition'],org:['مدارس الرياض – مدينة مسك · المبادرات المدرسية','Riyadh Schools – Misk City · School Initiatives'],
+ short:['فكرة تُكتب.. وإبداعٌ يُروى.. وأثرٌ يبقى. أربعة مسارات للكتابة والبحث والقصص المصورة والمرئية.','An idea written, creativity told, an impact that lasts. Four tracks: writing, research, illustrated and video stories.'],
+ about:[['مسابقة إبداعية لغوية تستهدف طلاب الصفوف من الأول إلى التاسع، وتهدف إلى اكتشاف المواهب الكتابية والإبداعية لدى الطلاب، وإتاحة مساحة لهم للتعبير عن أفكارهم وخيالهم والقضايا التي تهمهم بأساليب متنوعة.','A creative Arabic-language competition for Grades 1 to 9 that discovers students’ writing and creative talents and gives them space to express their ideas, imagination and the issues they care about in varied ways.'],['لا نبحث فقط عن أجمل نص، بل عن فكرة تستحق أن تُكتب.. وأثر يستحق أن يُقرأ.','We are not only looking for the most beautiful text, but for an idea worth writing and an impact worth reading.']],
+ gmin:1,gmax:9,gradeLbl:['جميع الطلاب من الصف الأول إلى التاسع','All students, Grades 1 – 9'],
+ facts:[[['موعد المشاركة','Entry week'],['الأسبوع 13','Week 13']],[['التسليم','Submit to'],['معلم أو معلمة اللغة العربية','Your Arabic teacher']],[['المشاركة','Entry'],['فردية أو جماعية حسب المسار','Individual or group, by track']],[['اللغة','Language'],['العربية','Arabic']]],
+ mode:['تسليم عمل للمدرسة','Submit work at school'],regState:'open',noEnd:true,regTxt:['التسليم في الأسبوع 13','Submit in Week 13'],
+ cats:{head:[['المسار','Track'],['المطلوب','What to submit']],rows:[[['قصتي','My Story'],['قصة من تأليف الطالب، خيالية أو واقعية، تحمل فكرة أو قيمة هادفة.','An original story, fiction or real, carrying a meaningful idea or value.']],[['باحث مسك','Misk Researcher'],['بحث مصغّر حول موضوع معرفي أو لغوي أو علمي أو تاريخي أو وطني.','A short research paper on a knowledge, language, science, history or national topic.']],[['قصتي المصورة','My Illustrated Story'],['قصة مصورة من تأليف الطالب.','An original illustrated story.']],[['حكاية على الشاشة','A Tale on Screen'],['قصة مرئية قصيرة من تأليف الطالب.','An original short video story.']]]},
+ dates:[],
+ prep:[['أن يكون العمل من إنتاج الطالب أو الطلاب، أصيلًا وغير منقول أو منشور سابقًا.','The work must be the student’s own, original, and not copied or published before.'],['الالتزام باللغة العربية، وتوثيق أي مصادر خارجية.','Use Arabic and cite any outside sources.'],['ألا يتضمن العمل محتوى مخالفًا للقيم والأنظمة المدرسية، والالتزام بسياسات مدارس الرياض للتصوير والخصوصية.','No content against school values and rules; follow Riyadh Schools’ photography and privacy policies.']],
+ register:null,schoolReg:['التسليم إلى معلم أو معلمة اللغة العربية في الأسبوع 13. يحق للجنة التحكيم استبعاد أي عمل لا يستوفي الشروط.','Submit to your Arabic teacher in Week 13. The judging panel may exclude any work that does not meet the conditions.'],docs:[{f:['docs/misk-writer-ar.pdf','docs/misk-writer-ar.pdf'],n:['إعلان المسابقة','Competition announcement'],d:['بالعربية','Arabic']}]},
+
 {id:'kangaroo-en',subj:'en',logo:null,logoTxt:'KANGAROO',art:'img/art-te-en.webp',
  name:['مسابقة الكنغارو الدولية للغة الإنجليزية 2026','Kangaroo International English Competition 2026'],org:['منصة مسابقات (Musabakat)','Musabakat platform'],
  short:['اختبار إنجليزي عن بُعد بستة مستويات حسب الصف، من الأول حتى الثاني عشر.','An online English test with six levels by grade, from Grade 1 to Grade 12.'],
@@ -827,7 +862,7 @@ function regDates(c){if(c.sessions)return c.sessions.map(s=>s[1]);return (c.date
 function nextReg(c){const r=regDates(c).filter(d=>endOf(d)>=now()).sort();return r[0]||null}
 function nextTest(c){if(c.sessions){const s=c.sessions.find(s=>endOf(s[1])>=now());return s?s[0]:c.sessions[c.sessions.length-1][0]}const t=(c.dates||[]).find(d=>d.t==='test');return t?t.d:null}
 function testEnd(c){const t=(c.dates||[]).filter(d=>d.t==='test').map(d=>d.d2||d.d).sort().pop();return t?endOf(t):0}
-function status(c){const n=nextReg(c);if(!n){if(c.regState&&testEnd(c)>=now())return {k:c.regState,nod:true};return {k:'closed'}};const dl=daysLeft(n);return {k:dl<=14?'soon':'open',d:n,dl}}
+function status(c){const n=nextReg(c);if(!n){if(c.regState&&(testEnd(c)>=now()||c.noEnd))return {k:c.regState,nod:true};return {k:'closed'}};const dl=daysLeft(n);return {k:dl<=14?'soon':'open',d:n,dl}}
 function badge(c){const s=status(c);if(s.nod)return `<span class="badge ${s.k==='open'?'b-open':'b-multi'}">${T(s.k==='open'?UI.regOpenNow:UI.regSoon)}</span>`;if(s.k==='closed')return `<span class="badge b-closed">${T(UI.closed)}</span>`;if(s.dl===0)return `<span class="badge b-soon">${T(UI.today)}</span>`;return `<span class="badge ${s.k==='soon'?'b-soon':'b-open'}">${UI.daysLeft[L()](s.dl)}</span>`}
 const ICON={
  users:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14.2c2.4.2 4 1.8 4.5 4.3"/></svg>',
@@ -861,7 +896,7 @@ function applyStatic(){
 }
 
 function renderFilters(){
-  const subs=['all','en','math','sci','code'];
+  const subs=['all','en','math','sci','code','school'];
   $('#chips').innerHTML=subs.map(s=>{const n=s==='all'?C.length:C.filter(c=>c.subj===s).length;const lbl=s==='all'?T(UI.all):T(UI.subj[s]);return `<button type="button" class="chip" data-s="${s}" aria-pressed="${fSubj===s}">${esc(lbl)}<span class="c">${n}</span></button>`}).join('');
   const g=$('#grade');let o=`<option value="all">${T(UI.allGrades)}</option>`;for(let i=1;i<=9;i++)o+=`<option value="${i}">${T(UI.gradeN)}${i}</option>`;g.innerHTML=o;g.value=fGrade;
   $('#openOnly').checked=fOpen;
@@ -873,7 +908,7 @@ function matches(c){
   if(fQ){const q=fQ.toLowerCase();if(!(c.name[0]+' '+c.name[1]+' '+c.org[1]).toLowerCase().includes(q))return false}
   return true;
 }
-function sortKey(c){const n=nextReg(c);if(n)return endOf(n);const s=status(c);return s.nod?testEnd(c):9e15}
+function sortKey(c){const n=nextReg(c);if(n)return endOf(n);const s=status(c);return s.nod?(c.noEnd?9e14:testEnd(c)):9e15}
 function renderGrid(){
   const list=C.filter(matches).sort((a,b)=>sortKey(a)-sortKey(b));
   if(!list.length){$('#grid').innerHTML=`<div class="empty">${T(UI.empty)}</div>`;return}
@@ -886,7 +921,7 @@ function renderGrid(){
         <h3>${esc(T(c.name))}</h3><p>${esc(T(c.short))}</p>
         <div class="meta">
           <div class="mrow">${ICON.users}<span class="k">${T(UI.grades)}</span><span class="v">${esc(g)}</span></div>
-          <div class="mrow">${ICON.cal}<span class="k">${T(c.regLbl||UI.regClose)}</span><span class="v">${nr?esc(fmt(nr)):(status(c).nod?esc(T(status(c).k==='open'?UI.regNoDate:UI.regSoon)):esc(T(UI.closed)))}</span></div>
+          <div class="mrow">${ICON.cal}<span class="k">${T(c.regLbl||UI.regClose)}</span><span class="v">${nr?esc(fmt(nr)):c.regTxt?esc(T(c.regTxt)):(status(c).nod?esc(T(status(c).k==='open'?UI.regNoDate:UI.regSoon)):esc(T(UI.closed)))}</span></div>
           <div class="mrow">${ICON.clock}<span class="k">${T(c.testLbl||UI.testDay)}</span><span class="v">${nt?esc(fmt(nt)):'–'}${c.sessions?' · <span class="badge b-multi">'+T(UI.multi)+'</span>':''}</span></div>
           <div class="mrow">${ICON.monitor}<span class="k">${T(UI.mode)}</span><span class="v">${esc(T(c.mode))}</span></div>
         </div>
@@ -960,7 +995,7 @@ function table(head,rows){return `<div class="tbl"><table><thead><tr>${head.map(
 function openPanel(id,push){
   const c=C.find(x=>x.id===id);if(!c)return;openId=id;lastFocus=document.activeElement;
   const jumps=[['ov',UI.jOverview],['ct',UI.jCats],['dt',UI.jDates],['aw',UI.jAwards],['pr',UI.jPrep],['dc',UI.jDocs]];
-  const has={ov:1,ct:!!c.cats,dt:1,aw:!!(c.awards||c.prizes),pr:!!c.prep,dc:!!(c.docs&&c.docs.length)};
+  const has={ov:1,ct:!!c.cats,dt:!!(c.sessions||c.dates.length),aw:!!(c.awards||c.prizes),pr:!!c.prep,dc:!!(c.docs&&c.docs.length)};
   let datesHtml='';
   if(c.sessions){
     const nx=c.sessions.find(s=>endOf(s[1])>=now());
@@ -987,7 +1022,7 @@ function openPanel(id,push){
         ${c.schoolReg?`<div class="note">${esc(T(c.schoolReg))}</div>`:''}
         <h3 style="margin-top:16px">${ICON.list}${T(UI.hFacts)}</h3><div class="facts"><div class="fact"><div class="k">${T(UI.grades)}</div><div class="v">${esc(T(c.gradeLbl))}</div></div>${c.facts.map(f=>`<div class="fact"><div class="k">${esc(T(f[0]))}</div><div class="v">${esc(T(f[1]))}</div></div>`).join('')}</div></div>
       ${c.cats?`<div class="box" id="j-ct" data-j="ct"><h3>${ICON.users}${T(UI.hCats)}</h3>${table(c.cats.head,c.cats.rows)}${c.cats.note?`<p style="margin-top:10px">${esc(T(c.cats.note))}</p>`:''}</div>`:''}
-      <div class="box" id="j-dt" data-j="dt">${datesHtml}</div>
+      ${has.dt?`<div class="box" id="j-dt" data-j="dt">${datesHtml}</div>`:''}
       ${(c.awards||c.prizes)?`<div class="box" id="j-aw" data-j="aw"><h3>${ICON.trophy}${T(UI.hAwards)}</h3>${c.awards?table([[lang==='ar'?'الجائزة':'Award','Award'],[lang==='ar'?'الدرجة':'Score','Score']].map(h=>[h[0],h[0]]),c.awards):''}${c.awardsNote?`<p style="margin-top:10px">${esc(T(c.awardsNote))}</p>`:''}${c.prizes?`<ul class="list" style="margin-top:12px">${c.prizes.map(x=>`<li>${esc(T(x))}</li>`).join('')}</ul>`:''}</div>`:''}
       ${c.prep?`<div class="box" id="j-pr" data-j="pr"><h3>${ICON.book}${T(UI.hPrep)}</h3><ul class="list">${c.prep.map(x=>`<li>${esc(T(x))}</li>`).join('')}</ul>${c.links?`<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px">${c.links.map(k=>`<a class="sbtn" href="${k.u}" target="_blank" rel="noopener">${esc(T(k.n))}</a>`).join('')}</div>`:''}${c.forum?`<p style="margin-top:12px"><a class="sbtn" href="${c.forum}" target="_blank" rel="noopener">${lang==='ar'?'منتدى المسابقة':'Competition forum'}&nbsp;${ICON.ext.replace('<svg','<svg width="16" height="16"')}</a></p>`:''}</div>`:''}
       ${docs?`<div class="box" id="j-dc" data-j="dc"><h3>${ICON.file}${T(UI.hDocs)}</h3><div class="docs">${docs}</div></div>`:''}
